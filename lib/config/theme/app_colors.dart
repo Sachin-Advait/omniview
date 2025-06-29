@@ -15,4 +15,6 @@ class AppColors {
   static const blueshade = Color(0xFF4E9ED0);
   static const darkgrey = Color(0xFFA9A9A9);
   static const orange = Color(0xFFFFA500);
+
+  static const darkGradient = [Color(0xFF121833), Color(0xFF0C1026)];
 }

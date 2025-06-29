@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:omniview/common/widgets/app_grandient.dart';
 import 'package:omniview/config/assets/app_images.dart';
 import 'package:omniview/routes/Routes.dart';
 import 'package:omniview/routes/pages.dart';
@@ -15,13 +16,7 @@ class Splash extends StatelessWidget {
       backgroundColor: Colors.transparent,
       body: Container(
         height: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Color(0xFF121833), Color(0xFF0C1026)],
-          ),
-        ),
+        decoration: BoxDecoration(gradient: AppGradients.background),
         child: BlocListener<SplashBloc, SplashState>(
           listener: (_, state) {
             switch (state) {
