@@ -10,6 +10,7 @@ class SessionManager {
 
   static const String _tokenKey = 'Token Key';
   static const String _userIdKey = 'User Id Key';
+  static const String _isFirstTime = 'Is First Time Key';
 
   static Future<void> saveToken(String token) async {
     await _userStorage.write(_tokenKey, token);
@@ -31,6 +32,17 @@ class SessionManager {
     String userId = _userStorage.read<String?>(_userIdKey) ?? '';
     debugPrint("User Id ==> $userId.");
     return userId;
+  }
+
+  static Future<void> saveIsFirstTime(bool isFirstTime) async {
+    await _userStorage.write(_isFirstTime, isFirstTime);
+    debugPrint("Is First Time saved ==> $isFirstTime.");
+  }
+
+  static bool? getIsFirstTime() {
+    bool isFirstTime = _userStorage.read<bool?>(_isFirstTime) ?? false;
+    debugPrint("Is First Time ==> $isFirstTime.");
+    return !isFirstTime;
   }
 
   static void clearSession() {

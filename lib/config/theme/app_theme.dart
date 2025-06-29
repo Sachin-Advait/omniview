@@ -4,7 +4,7 @@ import 'package:omniview/config/theme/app_colors.dart';
 
 class AppThemes {
   static final ThemeData appTheme = ThemeData(
-    brightness: Brightness.light,
+    brightness: Brightness.dark,
     scaffoldBackgroundColor: AppColors.background,
     appBarTheme: const AppBarTheme(
       systemOverlayStyle: SystemUiOverlayStyle(
