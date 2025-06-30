@@ -1,9 +1,10 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:omniview/common/widgets/custom_appbar.dart';
 import 'package:omniview/config/theme/app_colors.dart';
 import 'package:omniview/config/theme/app_theme.dart';
-import 'package:omniview/routes/custom_appbar.dart';
+import 'package:omniview/modules/dashboard/components/stat_card.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class Dashboard extends StatelessWidget {
@@ -16,6 +17,41 @@ class Dashboard extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 12),
         children: [
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                StatCard(
+                  icon: Icons.attach_money,
+                  title: 'Total Revenue',
+                  subtitle: 'This Week',
+                  value: '\$125,425',
+                  color: AppColors.violet.withValues(alpha: .5),
+                  trailing: Icon(Icons.show_chart, color: AppColors.primary),
+                ),
+                10.horizontalSpace,
+                StatCard(
+                  icon: Icons.groups,
+                  title: 'Customers',
+                  subtitle: 'This Week',
+                  value: '415',
+                  color: AppColors.royalBlue.withValues(alpha: .5),
+                  trailing: Icon(Icons.show_chart, color: AppColors.royalBlue),
+                ),
+                10.horizontalSpace,
+                StatCard(
+                  icon: Icons.attach_money,
+                  title: 'Avg. Sale',
+                  subtitle: 'This Week',
+                  value: '\$1,235',
+                  color: AppColors.softOrange.withValues(alpha: .5),
+                  trailing: Icon(Icons.show_chart, color: AppColors.softOrange),
+                ),
+              ],
+            ),
+          ),
+          20.verticalSpace,
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             decoration: BoxDecoration(
@@ -135,7 +171,7 @@ class Dashboard extends StatelessWidget {
               ],
             ),
           ),
-          30.verticalSpace,
+          20.verticalSpace,
           Container(
             padding: EdgeInsets.all(12),
             decoration: BoxDecoration(

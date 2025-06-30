@@ -42,7 +42,7 @@ class Pages {
       GoRoute(
         path: Routes.dashboard,
         name: Routes.dashboard,
-        builder: (context, state) => const Dashboard(),
+        builder: (context, state) => const NavBar(),
       ),
     ],
   );

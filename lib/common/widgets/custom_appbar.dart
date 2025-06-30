@@ -53,7 +53,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           child: SvgPicture.asset(
             AppSvg.notification,
-            height: 25,
+            height: 30,
             colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
           ),
         ),
@@ -66,7 +66,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           child: SvgPicture.asset(
             AppSvg.light,
-            height: 25,
+            height: 30,
             colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
           ),
         ),

@@ -5,19 +5,20 @@ import 'package:omniview/config/assets/app_svg.dart';
 import 'package:omniview/config/theme/app_colors.dart';
 import 'package:omniview/config/theme/app_theme.dart';
 import 'package:omniview/modules/chat_bot/page/chat_bot.dart';
+import 'package:omniview/modules/dashboard/page/dashborad.dart';
 import 'package:omniview/modules/insight/page/insight.dart';
 import 'package:omniview/modules/pulse/page/pulse.dart';
 import 'package:omniview/modules/setting/page/setting.dart';
 
-class Dashboard extends StatefulWidget {
+class NavBar extends StatefulWidget {
   final Widget? child;
-  const Dashboard({super.key, this.child});
+  const NavBar({super.key, this.child});
 
   @override
-  State<Dashboard> createState() => _DashboardViewState();
+  State<NavBar> createState() => _DashboardViewState();
 }
 
-class _DashboardViewState extends State<Dashboard> {
+class _DashboardViewState extends State<NavBar> {
   int selectedIndex = 2;
 
   final List<Widget> navBarItems = const [
