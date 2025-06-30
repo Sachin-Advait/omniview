@@ -12,4 +12,5 @@ class AppSvg {
   static const String onboarding03 = 'assets/svg/onboarding_03.svg';
   static const String pulse = 'assets/svg/pulse.svg';
   static const String setting = 'assets/svg/setting.svg';
+  static const String arrowBack = "assets/svg/arrow_back.svg";
 }
