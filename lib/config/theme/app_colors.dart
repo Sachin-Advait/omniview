@@ -1,20 +1,19 @@
 import 'dart:ui';
 
 class AppColors {
-  static const primary = Color(0xFF7044c3);
-  static const secondary = Color(0xFF8BC540);
-  static const background = Color(0xFFeeeeee);
-  static const white = Color(0xffFFFFFF);
-  static const black = Color(0xFF09080D);
-  static const red = Color(0xFFFF0000);
-  static const green = Color(0xFF008000);
-  static const yellow = Color(0xFFFFA500);
-  static const lightgrey = Color(0xFFeeeeee);
-  static const lightblue = Color(0xFFADD8E6);
-  static const pink = Color(0xFFF06292);
-  static const blueshade = Color(0xFF4E9ED0);
-  static const darkgrey = Color(0xFFA9A9A9);
-  static const orange = Color(0xFFFFA500);
-
-  static const darkGradient = [Color(0xFF121833), Color(0xFF0C1026)];
+  static const black = Color(0xFF000000);
+  static const white = Color(0xFFffffff);
+  static const grey = Color(0xFF838b99);
+  static const deepNavy = Color(0xFF19243B);
+  static const primary = Color(0xFF7352C7);
+  static const darkSlate = Color(0xFF26324D);
+  static const cyan = Color(0xFF23BCBA);
+  static const rosePink = Color(0xFFE44A77);
+  static const deepRose = Color(0xFFC13E6A);
+  static const violet = Color(0xFF6F42C1);
+  static const royalBlue = Color(0xFF3F64F7);
+  static const sapphireBlue = Color(0xFF3155C4);
+  static const aquaGreen = Color(0xFF2EAFA8);
+  static const softOrange = Color(0xFFF7BB63);
+  static const amberOrange = Color(0xFFF39711);
 }

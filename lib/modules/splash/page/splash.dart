@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:omniview/common/widgets/app_grandient.dart';
 import 'package:omniview/config/assets/app_images.dart';
 import 'package:omniview/routes/Routes.dart';
 import 'package:omniview/routes/pages.dart';
@@ -13,34 +12,30 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Container(
-        height: double.infinity,
-        decoration: BoxDecoration(gradient: AppGradients.background),
-        child: BlocListener<SplashBloc, SplashState>(
-          listener: (_, state) {
-            switch (state) {
-              case SplashInitial():
-              // Do Nothing.
-              case NavigateToOnboardingActionState():
-                Pages.router.goNamed(Routes.onBoarding);
-              case NavigateToLoginActionState():
-                Pages.router.goNamed(Routes.login);
-              case NavigateToDashboardActionState():
-                Pages.router.goNamed(Routes.dashboard);
-            }
-          },
-          child: Column(
-            children: [
-              Image.asset(AppImages.splashLogo, height: 440),
-              Spacer(),
-              Image.asset(
-                AppImages.splashEffect,
-                // height: 200,
-                fit: BoxFit.fitWidth,
-              ),
-            ],
-          ),
+      body: BlocListener<SplashBloc, SplashState>(
+        listener: (_, state) {
+          switch (state) {
+            case SplashInitial():
+            // Do Nothing.
+            case NavigateToOnboardingActionState():
+              Pages.router.goNamed(Routes.onBoarding);
+            case NavigateToLoginActionState():
+              Pages.router.goNamed(Routes.login);
+            case NavigateToDashboardActionState():
+              Pages.router.goNamed(Routes.dashboard);
+          }
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.only(top: 200),
+              child: Image.asset(AppImages.appLogo, height: 140),
+            ),
+            Spacer(),
+            Image.asset(AppImages.splashEffect),
+          ],
         ),
       ),
     );

@@ -5,19 +5,42 @@ import 'package:omniview/config/theme/app_colors.dart';
 class AppThemes {
   static final ThemeData appTheme = ThemeData(
     brightness: Brightness.dark,
-    scaffoldBackgroundColor: AppColors.background,
+    fontFamily: 'Poppins',
+    scaffoldBackgroundColor: AppColors.deepNavy,
     appBarTheme: const AppBarTheme(
-      systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: AppColors.background,
-      ),
+      systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: AppColors.white),
     ),
     textTheme: const TextTheme(
-      headlineLarge: TextStyle(color: AppColors.black, fontSize: 24),
-      headlineMedium: TextStyle(color: AppColors.black, fontSize: 20),
-      headlineSmall: TextStyle(color: AppColors.black, fontSize: 18),
-      titleLarge: TextStyle(color: AppColors.black, fontSize: 16),
-      titleMedium: TextStyle(color: AppColors.black, fontSize: 14),
-      titleSmall: TextStyle(color: AppColors.black, fontSize: 12),
+      headlineLarge: TextStyle(
+        color: AppColors.white,
+        fontSize: 24,
+        fontWeight: FontWeight.w900, // ExtraBold
+      ),
+      headlineMedium: TextStyle(
+        color: AppColors.white,
+        fontSize: 20,
+        fontWeight: FontWeight.w800, // Bold
+      ),
+      headlineSmall: TextStyle(
+        color: AppColors.white,
+        fontSize: 18,
+        fontWeight: FontWeight.w700, // SemiBold
+      ),
+      titleLarge: TextStyle(
+        color: AppColors.white,
+        fontSize: 16,
+        fontWeight: FontWeight.w500, // Medium
+      ),
+      titleMedium: TextStyle(
+        color: AppColors.white,
+        fontSize: 14,
+        fontWeight: FontWeight.w400, // Regular
+      ),
+      titleSmall: TextStyle(
+        color: AppColors.white,
+        fontSize: 12,
+        fontWeight: FontWeight.w300, // Light
+      ),
     ),
   );
 }
