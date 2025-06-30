@@ -11,7 +11,9 @@ import 'package:omniview/routes/default_route.dart';
 import 'package:omniview/routes/routes.dart';
 
 class Pages {
-  static final GoRouter router = GoRouter(
+  static GoRouter get appRouter => _appRouter;
+
+  static final GoRouter _appRouter = GoRouter(
     initialLocation: Routes.splash,
     navigatorKey: GlobalKeys.navigatorKey,
     errorBuilder: (context, state) => DefaultRoute(),

@@ -86,7 +86,7 @@ class Login extends StatelessWidget {
                           'Please enter the OTP sent to your\nmobile number xxxx789',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: AppColors.white.withOpacity(.9),
+                            color: AppColors.white,
                             fontSize: 14,
                           ),
                         ),
