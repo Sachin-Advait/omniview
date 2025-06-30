@@ -35,7 +35,7 @@ mixin CustomDecorationMixin {
           ),
       hintStyle:
           hintTextStyle ??
-          context.regular.copyWith(color: AppColors.grey, fontSize: 14),
+          context.regular.copyWith(color: AppColors.white50, fontSize: 14),
       border: OutlineInputBorder(
         borderSide: BorderSide(color: AppColors.primary),
         borderRadius: BorderRadius.circular(radius ?? 30),
@@ -55,7 +55,10 @@ mixin CustomDecorationMixin {
       ),
       disabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(radius ?? 30),
-        borderSide: BorderSide(width: 1, color: borderColor ?? AppColors.grey),
+        borderSide: BorderSide(
+          width: 1,
+          color: borderColor ?? AppColors.white50,
+        ),
       ),
       filled: true,
       fillColor: bgColor ?? AppColors.darkSlate,
