@@ -213,6 +213,7 @@ class Dashboard extends StatelessWidget {
               ],
             ),
           ),
+          20.verticalSpace,
         ],
       ),
     );

@@ -1,0 +1,15 @@
+name: animated_navbar
+description: One another nice animated tab bar (Flutter Version) (inspired by https://github.com/Cuberto/flashy-tabbar)
+version: 0.0.10
+homepage: https://github.com/Bilonik/flashy_tab_bar2
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

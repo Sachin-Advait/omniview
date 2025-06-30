@@ -1,3 +1,4 @@
+import 'package:animated_navbar/animated_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:omniview/common/utils/size_config.dart';
@@ -11,8 +12,7 @@ import 'package:omniview/modules/pulse/page/pulse.dart';
 import 'package:omniview/modules/setting/page/setting.dart';
 
 class NavBar extends StatefulWidget {
-  final Widget? child;
-  const NavBar({super.key, this.child});
+  const NavBar({super.key});
 
   @override
   State<NavBar> createState() => _DashboardViewState();
@@ -43,51 +43,24 @@ class _DashboardViewState extends State<NavBar> {
       },
       child: Scaffold(
         body: navBarItems[selectedIndex],
-        bottomNavigationBar: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15.widthMultiplier),
-          decoration: BoxDecoration(
-            color: AppColors.primary,
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: SafeArea(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                NavItem(
-                  icon: AppSvg.pulse,
-                  index: 0,
-                  name: "Pulse",
-                  isSelected: selectedIndex == 0,
-                  onTap: onItemTapped,
-                ),
-                NavItem(
-                  icon: AppSvg.insight,
-                  index: 1,
-                  name: "Insight",
-                  isSelected: selectedIndex == 1,
-                  onTap: onItemTapped,
-                ),
-                NavItem(
-                  icon: AppSvg.dashboard,
-                  index: 2,
-                  name: "Dashboard",
-                  isSelected: selectedIndex == 2,
-                  onTap: onItemTapped,
-                ),
-                NavItem(
-                  icon: AppSvg.chatBot,
-                  index: 3,
-                  name: "Chatbot",
-                  isSelected: selectedIndex == 3,
-                  onTap: onItemTapped,
-                ),
-                NavItem(
-                  icon: AppSvg.setting,
-                  index: 4,
-                  name: "Setting",
-                  isSelected: selectedIndex == 4,
-                  onTap: onItemTapped,
-                ),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(90),
+            child: AnimatedNavbar(
+              showDotIndicator: selectedIndex == 2 ? false : true,
+              backgroundColor: AppColors.primary,
+              selectedIndex: selectedIndex,
+              showElevation: true,
+              onItemSelected: (index) => setState(() {
+                selectedIndex = index;
+              }),
+              items: [
+                flashyTabbar("Pulse", AppSvg.pulse, 0),
+                flashyTabbar("Insight", AppSvg.insight, 1),
+                flashyTabbar("Dashboard", AppSvg.dashboard, 2),
+                flashyTabbar("Chatbot", AppSvg.chatBot, 3),
+                flashyTabbar("Setting", AppSvg.setting, 4),
               ],
             ),
           ),
@@ -95,65 +68,55 @@ class _DashboardViewState extends State<NavBar> {
       ),
     );
   }
-}
 
-class NavItem extends StatelessWidget {
-  final String icon;
-  final int index;
-  final String name;
-  final bool isSvg;
-  final double? height;
-  final bool isSelected;
-  final Function(int) onTap;
-
-  const NavItem({
-    super.key,
-    required this.icon,
-    required this.index,
-    required this.name,
-    required this.isSelected,
-    required this.onTap,
-    this.height,
-    this.isSvg = true,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final textStyle = isSelected
-        ? context.medium
-        : context.medium.copyWith(color: Colors.white54);
-    final iconColor = isSelected ? AppColors.white : AppColors.white75;
-
-    return GestureDetector(
-      onTap: () => onTap(index),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          10.verticalSpace,
-          if (!isSelected)
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: SvgPicture.asset(
-                icon,
-                height: height ?? 25.heightMultiplier,
-                width: height ?? 25.widthMultiplier,
-                colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
-              ),
-            ),
-          10.verticalSpace,
-          if (isSelected) Text(name, style: textStyle),
-          if (isSelected)
-            Container(
-              width: 8,
-              height: 8,
-              margin: EdgeInsets.only(top: 6),
-              decoration: BoxDecoration(
-                color: AppColors.white,
-                shape: BoxShape.circle,
-              ),
-            ),
-        ],
+  AnimatedNavbarItem flashyTabbar(String name, String svg, int index) {
+    final iconColor = selectedIndex == index
+        ? AppColors.white
+        : AppColors.white75;
+    final icon = Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: AppColors.white.withValues(alpha: .15),
+          width: 6,
+        ),
       ),
+
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(
+            color: AppColors.white.withValues(alpha: .34),
+            width: 6,
+          ),
+        ),
+
+        child: SvgPicture.asset(
+          svg,
+          height: 25.heightMultiplier,
+          width: 25.widthMultiplier,
+          colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
+        ),
+      ),
+    );
+    return AnimatedNavbarItem(
+      enableAnimation: index == 2 ? false : true,
+      activeColor: AppColors.white,
+      icon: index == 2
+          ? icon
+          : SvgPicture.asset(
+              svg,
+              height: 25.heightMultiplier,
+              width: 25.widthMultiplier,
+              colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
+            ),
+      title: index == 2
+          ? icon
+          : Text(
+              name,
+              style: context.medium.copyWith(color: Colors.white, fontSize: 16),
+            ),
     );
   }
 }
