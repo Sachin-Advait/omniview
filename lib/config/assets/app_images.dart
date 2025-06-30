@@ -3,5 +3,5 @@ class AppImages {
   static const String splashLogo = 'assets/images/splash_logo.png';
   static const String splashEffect = 'assets/images/splash_effect.png';
   static const String splashLoader = 'assets/images/loader.gif';
-  static const String chatBot = 'assets/images/chat_bot.png';
+  static const String logout = 'assets/images/power-off.png';
 }

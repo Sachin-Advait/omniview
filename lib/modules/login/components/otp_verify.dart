@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:omniview/common/widgets/dark_button.dart';
 import 'package:omniview/config/theme/app_colors.dart';
 import 'package:omniview/config/theme/app_theme.dart';
+import 'package:omniview/data/source/local/session_manager.dart';
 import 'package:omniview/routes/routes.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -72,6 +73,7 @@ void otpVerify(BuildContext context) {
                 DarkButton(
                   titleText: 'Submit',
                   onTap: () {
+                    SessionManager.saveToken('token');
                     context.goNamed(Routes.dashboard);
                   },
                 ),

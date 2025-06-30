@@ -46,6 +46,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         Container(
+          padding: EdgeInsets.all(8),
           decoration: BoxDecoration(
             color: AppColors.darkSlate,
             border: Border.all(color: AppColors.primary),
@@ -53,7 +54,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           child: SvgPicture.asset(
             AppSvg.notification,
-            height: 30,
+            height: 13,
             colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
           ),
         ),

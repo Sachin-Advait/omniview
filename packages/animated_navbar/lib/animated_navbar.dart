@@ -37,7 +37,7 @@ class AnimatedNavbar extends StatelessWidget {
   final Color? backgroundColor;
   final double height;
   final double iconSize;
-  final List<AnimatedNavbarItem> items;
+  final List items;
   final ValueChanged<int> onItemSelected;
   final int selectedIndex;
   final List<BoxShadow> shadows;
@@ -100,6 +100,7 @@ class AnimatedNavbarItem {
     this.activeColor = const Color(0xff272e81),
     this.inactiveColor = const Color(0xff9496c1),
     this.enableAnimation = true,
+    this.onTap,
   });
 
   Color activeColor;
@@ -107,6 +108,7 @@ class AnimatedNavbarItem {
   Color inactiveColor;
   final Widget title;
   final bool enableAnimation;
+  final Function()? onTap;
 }
 
 class _AnimatedNavbarItem extends StatelessWidget {
@@ -135,103 +137,106 @@ class _AnimatedNavbarItem extends StatelessWidget {
     /// The title is displayed when the item is selected.
     /// The icon and title are animated together.
     /// The icon and title are animated in opposite directions.
-    return Container(
-        color: backgroundColor,
-        height: double.maxFinite,
-        child: Stack(
-          clipBehavior: Clip.hardEdge,
-          alignment: Alignment.center,
-          children: <Widget>[
-            AnimatedAlign(
-              duration: animationDuration,
-              alignment: isSelected ? Alignment.topCenter : Alignment.center,
-              child: AnimatedOpacity(
-                  opacity: !item.enableAnimation && isSelected
-                      ? 0
-                      : isSelected
-                          ? 1.0
-                          : 1.0,
-                  duration: !item.enableAnimation && isSelected
-                      ? Duration(seconds: 0)
-                      : animationDuration,
-                  child: IconTheme(
-                    data: IconThemeData(
-                        size: iconSize,
-                        color: isSelected
-                            ? item.activeColor.withOpacity(1)
-                            : item.inactiveColor),
-                    child: item.icon,
-                  )),
-            ),
-            if (item.enableAnimation)
-              AnimatedPositioned(
-                curve: animationCurve,
+    return InkWell(
+      onTap: item.onTap,
+      child: Container(
+          color: backgroundColor,
+          height: double.maxFinite,
+          child: Stack(
+            clipBehavior: Clip.hardEdge,
+            alignment: Alignment.center,
+            children: <Widget>[
+              AnimatedAlign(
                 duration: animationDuration,
-                top: isSelected ? -2.0 * iconSize : tabBarHeight / 4,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      width: iconSize,
-                      height: iconSize,
-                    ),
-                    CustomPaint(
-                      painter: _CustomPath(backgroundColor, iconSize),
-                      child: SizedBox(
-                        width: 80,
+                alignment: isSelected ? Alignment.topCenter : Alignment.center,
+                child: AnimatedOpacity(
+                    opacity: !item.enableAnimation && isSelected
+                        ? 0
+                        : isSelected
+                            ? 1.0
+                            : 1.0,
+                    duration: !item.enableAnimation && isSelected
+                        ? Duration(seconds: 0)
+                        : animationDuration,
+                    child: IconTheme(
+                      data: IconThemeData(
+                          size: iconSize,
+                          color: isSelected
+                              ? item.activeColor.withOpacity(1)
+                              : item.inactiveColor),
+                      child: item.icon,
+                    )),
+              ),
+              if (item.enableAnimation)
+                AnimatedPositioned(
+                  curve: animationCurve,
+                  duration: animationDuration,
+                  top: isSelected ? -2.0 * iconSize : tabBarHeight / 4,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(
+                        width: iconSize,
                         height: iconSize,
                       ),
-                    )
-                  ],
+                      CustomPaint(
+                        painter: _CustomPath(backgroundColor, iconSize),
+                        child: SizedBox(
+                          width: 80,
+                          height: iconSize,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
 
-            AnimatedAlign(
-                alignment:
-                    isSelected ? Alignment.center : Alignment.bottomCenter,
-                duration: animationDuration,
-                curve: animationCurve,
-                child: AnimatedOpacity(
-                    opacity: isSelected ? 1.0 : 0.0,
-                    duration: animationDuration,
-                    child: DefaultTextStyle.merge(
-                      style: TextStyle(
-                        color: item.activeColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      child: item.title,
-                    ))),
-            // if (showDotIndicator)
-            //   Positioned(
-            //       bottom: 0,
-            //       child: CustomPaint(
-            //         painter: _CustomPath(backgroundColor, iconSize),
-            //         child: SizedBox(
-            //           width: 80,
-            //           height: iconSize,
-            //         ),
-            //       )),
+              AnimatedAlign(
+                  alignment:
+                      isSelected ? Alignment.center : Alignment.bottomCenter,
+                  duration: animationDuration,
+                  curve: animationCurve,
+                  child: AnimatedOpacity(
+                      opacity: isSelected ? 1.0 : 0.0,
+                      duration: animationDuration,
+                      child: DefaultTextStyle.merge(
+                        style: TextStyle(
+                          color: item.activeColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        child: item.title,
+                      ))),
+              // if (showDotIndicator)
+              //   Positioned(
+              //       bottom: 0,
+              //       child: CustomPaint(
+              //         painter: _CustomPath(backgroundColor, iconSize),
+              //         child: SizedBox(
+              //           width: 80,
+              //           height: iconSize,
+              //         ),
+              //       )),
 
-            /// This is the selected item indicator
-            if (showDotIndicator)
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: AnimatedOpacity(
-                    duration: animationDuration,
-                    opacity: isSelected ? 1.0 : 0.0,
-                    child: Container(
-                      width: 5,
-                      height: 5,
-                      alignment: Alignment.bottomCenter,
-                      margin: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        color: item.activeColor,
-                        borderRadius: BorderRadius.circular(2.5),
-                      ),
-                    )),
-              )
-          ],
-        ));
+              /// This is the selected item indicator
+              if (showDotIndicator)
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: AnimatedOpacity(
+                      duration: animationDuration,
+                      opacity: isSelected ? 1.0 : 0.0,
+                      child: Container(
+                        width: 5,
+                        height: 5,
+                        alignment: Alignment.bottomCenter,
+                        margin: const EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          color: item.activeColor,
+                          borderRadius: BorderRadius.circular(2.5),
+                        ),
+                      )),
+                )
+            ],
+          )),
+    );
   }
 }
 

@@ -13,4 +13,5 @@ class AppSvg {
   static const String pulse = 'assets/svg/pulse.svg';
   static const String setting = 'assets/svg/setting.svg';
   static const String arrowBack = "assets/svg/arrow_back.svg";
+  static const String waveHands = 'assets/svg/emoji_waving.svg';
 }

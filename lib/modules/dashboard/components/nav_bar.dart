@@ -1,6 +1,7 @@
 import 'package:animated_navbar/animated_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:omniview/common/utils/size_config.dart';
 import 'package:omniview/config/assets/app_svg.dart';
 import 'package:omniview/config/theme/app_colors.dart';
@@ -10,6 +11,7 @@ import 'package:omniview/modules/dashboard/page/dashborad.dart';
 import 'package:omniview/modules/insight/page/insight.dart';
 import 'package:omniview/modules/pulse/page/pulse.dart';
 import 'package:omniview/modules/setting/page/setting.dart';
+import 'package:omniview/routes/routes.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -101,6 +103,13 @@ class _DashboardViewState extends State<NavBar> {
       ),
     );
     return AnimatedNavbarItem(
+      onTap: index != 3
+          ? null
+          : () {
+              if (index == 3) {
+                context.pushNamed(Routes.chatBot);
+              }
+            },
       enableAnimation: index == 2 ? false : true,
       activeColor: AppColors.white,
       icon: index == 2
