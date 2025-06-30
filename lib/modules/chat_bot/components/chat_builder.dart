@@ -83,10 +83,8 @@ class ChatBuilder extends StatelessWidget {
             ],
           ),
         ),
-        const Divider(color: AppColors.white, height: 0),
         Container(
-          padding: EdgeInsets.only(bottom: 25),
-          decoration: BoxDecoration(color: AppColors.primary),
+          padding: EdgeInsets.only(bottom: 25, left: 10, right: 10),
           child: const BuildInputField(),
         ),
       ],

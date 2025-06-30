@@ -3,72 +3,124 @@ import 'package:omniview/common/utils/size_config.dart';
 import 'package:omniview/config/theme/app_colors.dart';
 import 'package:omniview/config/theme/app_theme.dart';
 
-class BuildInputField extends StatelessWidget {
+class BuildInputField extends StatefulWidget {
   const BuildInputField({super.key});
 
   @override
+  State<BuildInputField> createState() => _BuildInputFieldState();
+}
+
+class _BuildInputFieldState extends State<BuildInputField> {
+  final TextEditingController _controller = TextEditingController();
+  bool hasText = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      setState(() {
+        hasText = _controller.text.trim().isNotEmpty;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void sendMessage() {
+    // Add your send logic here
+    _controller.clear();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: 10.widthMultiplier,
-        vertical: 10.heightMultiplier,
-      ),
-      color: AppColors.primary,
-      child: Row(
-        children: [
-          Expanded(
-            child: TextField(
-              textInputAction: TextInputAction.done,
-              cursorColor: AppColors.white,
-              onChanged: (value) {},
-              onSubmitted: (value) {},
-              controller: TextEditingController(),
-              style: context.medium,
-              decoration: InputDecoration(
-                hintText: "Ask Anything",
-                border: InputBorder.none,
-                hintStyle: context.medium.copyWith(
-                  color: AppColors.white75,
-                  fontSize: 14,
+    return Row(
+      children: [
+        Expanded(
+          child: TextField(
+            textInputAction: TextInputAction.done,
+            cursorColor: AppColors.white,
+            controller: _controller,
+            onSubmitted: (_) => hasText ? sendMessage() : null,
+            style: context.medium,
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+              hintText: "Type Something...",
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide: const BorderSide(color: AppColors.primary),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide: const BorderSide(
+                  color: AppColors.primary,
+                  width: .8,
                 ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide: const BorderSide(
+                  color: AppColors.primary,
+                  width: .8,
+                ),
+              ),
+              fillColor: AppColors.darkSlate,
+              filled: true,
+              hintStyle: context.medium.copyWith(
+                color: AppColors.white75,
+                fontSize: 14,
               ),
             ),
           ),
+        ),
+        10.horizontalSpace,
+        AnimatedSwitcher(
+          duration: const Duration(milliseconds: 300),
+          transitionBuilder: (child, animation) =>
+              ScaleTransition(scale: animation, child: child),
+          child: hasText
+              ? _buildActionButton(
+                  key: const ValueKey("send"),
+                  icon: Icons.send,
+                  onPressed: sendMessage,
+                )
+              : Row(
+                  key: const ValueKey("mic_camera"),
+                  children: [
+                    _buildActionButton(
+                      icon: Icons.camera_alt_outlined,
+                      onPressed: () {},
+                    ),
+                    10.horizontalSpace,
+                    _buildActionButton(
+                      icon: Icons.mic_none_outlined,
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+        ),
+      ],
+    );
+  }
 
-          // todo not implemented right now
-
-          // Obx(
-          //   () => Visibility(
-          //     visible: controller.showEmojiButton.value,
-          //     child: IconButton(
-          //       icon: Icon(
-          //         Icons.emoji_emotions_outlined,
-          //         color: AppColors.white75,
-          //       ),
-          //       onPressed: () {},
-          //     ),
-          //   ),
-          // ),
-          // Obx(
-          //   () => Transform.rotate(
-          //     angle: 3.14 / 4,
-          //     child: Visibility(
-          //       visible: controller.showAttachmentButton.value,
-          //       child: IconButton(
-          //         icon: Icon(Icons.attach_file, color: AppColors.white75),
-          //         onPressed: () {},
-          //       ),
-          //     ),
-          //   ),
-          // ),
-          Transform.rotate(
-            angle: -3.14 / 4,
-            child: IconButton(
-              icon: Icon(Icons.send_outlined, color: AppColors.white75),
-              onPressed: () {},
-            ),
-          ),
-        ],
+  Widget _buildActionButton({
+    required IconData icon,
+    required VoidCallback onPressed,
+    Key? key,
+  }) {
+    return Container(
+      key: key,
+      decoration: BoxDecoration(
+        color: AppColors.darkSlate,
+        borderRadius: BorderRadius.circular(30),
+        border: Border.all(color: AppColors.primary),
+      ),
+      child: IconButton(
+        icon: Icon(icon, color: AppColors.white),
+        onPressed: onPressed,
       ),
     );
   }
