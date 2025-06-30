@@ -6,8 +6,8 @@ import 'package:omniview/config/theme/app_theme.dart';
 import 'package:omniview/routes/custom_appbar.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-class DashboardCharts extends StatelessWidget {
-  const DashboardCharts({super.key});
+class Dashboard extends StatelessWidget {
+  const Dashboard({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -4,11 +4,10 @@ import 'package:omniview/common/utils/size_config.dart';
 import 'package:omniview/config/assets/app_svg.dart';
 import 'package:omniview/config/theme/app_colors.dart';
 import 'package:omniview/config/theme/app_theme.dart';
-import 'package:omniview/modules/chat_bot/chat_bot.dart';
-import 'package:omniview/modules/dashboard/dashborad_charts.dart';
-import 'package:omniview/modules/insight/insight.dart';
+import 'package:omniview/modules/chat_bot/page/chat_bot.dart';
+import 'package:omniview/modules/insight/page/insight.dart';
 import 'package:omniview/modules/pulse/page/pulse.dart';
-import 'package:omniview/modules/setting/setting.dart';
+import 'package:omniview/modules/setting/page/setting.dart';
 
 class Dashboard extends StatefulWidget {
   final Widget? child;
@@ -24,7 +23,7 @@ class _DashboardViewState extends State<Dashboard> {
   final List<Widget> navBarItems = const [
     Pulse(),
     Insight(),
-    DashboardCharts(),
+    Dashboard(),
     ChatBot(),
     Setting(),
   ];
