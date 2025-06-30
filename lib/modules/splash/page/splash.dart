@@ -31,7 +31,7 @@ class Splash extends StatelessWidget {
             Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.only(top: 200),
-              child: Image.asset(AppImages.appLogo, height: 140),
+              child: Image.asset(AppImages.splashLogo, height: 140),
             ),
             Spacer(),
             Image.asset(AppImages.splashEffect),

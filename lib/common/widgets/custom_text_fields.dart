@@ -186,7 +186,7 @@ class PhoneTextField extends StatelessWidget with CustomDecorationMixin {
   Widget build(BuildContext context) {
     return TextFormField(
       autofocus: autofocus,
-      validator: CustomValidtion.isPhone,
+      validator: CustomValidtion.isStaffId,
       controller: controller,
       keyboardType: TextInputType.phone,
       autovalidateMode: AutovalidateMode.onUserInteraction,

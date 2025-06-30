@@ -15,11 +15,11 @@ class CustomValidtion {
     }
   }
 
-  static String? isPhone(String? phone) {
+  static String? isStaffId(String? phone) {
     if (phone == null || phone.isEmpty) {
       return AppErrors.fieldIsRequired;
     } else if (phone.length != 10) {
-      return AppErrors.phoneNumberErrorText;
+      return AppErrors.staffIdErrorText;
     } else {
       return null;
     }

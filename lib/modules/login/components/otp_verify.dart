@@ -20,7 +20,7 @@ void otpVerify(BuildContext context) {
         ),
         child: SingleChildScrollView(
           child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+            padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 14),
             decoration: BoxDecoration(
               color: AppColors.primary,
               borderRadius: BorderRadius.circular(32),
@@ -34,7 +34,7 @@ void otpVerify(BuildContext context) {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Please enter the OTP sent to your\nmobile number xxxx789',
+                  'Please enter the OTP',
                   textAlign: TextAlign.center,
                   style: TextStyle(color: AppColors.white, fontSize: 14),
                 ),
@@ -44,10 +44,10 @@ void otpVerify(BuildContext context) {
                   hintCharacter: '-',
                   hintStyle: TextStyle(color: AppColors.black),
                   pinTheme: PinTheme(
-                    fieldWidth: 60,
-                    fieldHeight: 60,
+                    fieldWidth: 50,
+                    fieldHeight: 50,
                     inactiveBorderWidth: 0,
-                    fieldOuterPadding: EdgeInsets.symmetric(horizontal: 5),
+                    fieldOuterPadding: EdgeInsets.symmetric(horizontal: 3),
                     borderRadius: BorderRadius.circular(15),
                     activeFillColor: AppColors.white,
                     activeColor: AppColors.white,
@@ -62,7 +62,7 @@ void otpVerify(BuildContext context) {
                   cursorColor: AppColors.black,
                   appContext: context,
                   keyboardType: TextInputType.number,
-                  length: 4,
+                  length: 6,
                   enableActiveFill: true,
                   autoFocus: true,
                   mainAxisAlignment: MainAxisAlignment.center,
