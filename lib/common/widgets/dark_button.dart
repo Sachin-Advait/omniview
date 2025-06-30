@@ -13,7 +13,7 @@ class DarkButton extends StatelessWidget {
   const DarkButton({
     super.key,
     required this.titleText,
-    this.onTap,
+    required this.onTap,
     this.width,
     this.height,
     this.isLoading = false,

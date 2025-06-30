@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:omniview/config/theme/app_colors.dart';
+import 'package:omniview/data/source/local/session_manager.dart';
 import 'package:omniview/modules/onboarding/components/onboarding_data.dart';
 import 'package:omniview/modules/onboarding/cubit/onboarding_cubit.dart';
 import 'package:omniview/routes/routes.dart';
@@ -63,7 +64,7 @@ class _OnboardingState extends State<Onboarding> {
             ),
           ),
           BlocBuilder<OnboardingCubit, int>(
-            builder: (context, index) {
+            builder: (context, _) {
               final cubit = context.read<OnboardingCubit>();
               final isLast = cubit.isLastPage(onboardingPages.length);
 
@@ -71,6 +72,7 @@ class _OnboardingState extends State<Onboarding> {
                 onPressed: () {
                   if (isLast) {
                     context.goNamed(Routes.login);
+                    SessionManager.saveIsFirstTime(true);
                   } else {
                     cubit.nextPage(onboardingPages.length);
                     pageController.animateToPage(
