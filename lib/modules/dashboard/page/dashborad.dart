@@ -26,37 +26,34 @@ class _DashboardState extends State<Dashboard> {
         appBar: CustomAppBar(title: 'Dashboard'),
         body: Column(
           children: [
-            ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 12),
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  color: AppColors.primary.withValues(alpha: .2),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 12),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                color: AppColors.primary.withValues(alpha: .2),
+              ),
+              child: const TabBar(
+                dividerHeight: 0,
+                indicatorWeight: 0,
+                indicatorPadding: EdgeInsetsGeometry.zero,
+                padding: EdgeInsets.zero,
+                tabAlignment: TabAlignment.start,
+                isScrollable: true,
+                indicatorSize: TabBarIndicatorSize.tab,
+                dividerColor: Colors.transparent,
+                indicator: BoxDecoration(
+                  color: AppColors.primary,
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
                 ),
-                child: const TabBar(
-                  dividerHeight: 0,
-                  indicatorWeight: 0,
-                  indicatorPadding: EdgeInsetsGeometry.zero,
-                  padding: EdgeInsets.zero,
-                  tabAlignment: TabAlignment.start,
-                  isScrollable: true,
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  dividerColor: Colors.transparent,
-                  indicator: BoxDecoration(
-                    color: AppColors.primary,
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  labelColor: Colors.white,
-                  unselectedLabelColor: Colors.black54,
-                  tabs: [
-                    TabItem(title: 'Growth'),
-                    TabItem(title: 'Profit'),
-                    TabItem(title: 'Customer'),
-                    TabItem(title: 'People'),
-                    TabItem(title: 'Risk & Esg'),
-                  ],
-                ),
+                labelColor: Colors.white,
+                unselectedLabelColor: Colors.black54,
+                tabs: [
+                  TabItem(title: 'Growth'),
+                  TabItem(title: 'Profit'),
+                  TabItem(title: 'Customer'),
+                  TabItem(title: 'People'),
+                  TabItem(title: 'Risk & Esg'),
+                ],
               ),
             ),
 
@@ -91,7 +88,7 @@ class _TabContent extends StatelessWidget {
         StatBuilder(),
         20.verticalSpace,
         child,
-        20.verticalSpace,
+        120.verticalSpace,
       ],
     );
   }

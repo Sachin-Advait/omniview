@@ -78,7 +78,7 @@ class Pulse extends StatelessWidget {
               ],
             ),
           ),
-          20.verticalSpace,
+          120.verticalSpace,
         ],
       ),
     );
