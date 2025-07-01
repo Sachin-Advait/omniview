@@ -74,7 +74,7 @@ void otpVerify(BuildContext context) {
                   titleText: 'Submit',
                   onTap: () {
                     SessionManager.saveToken('token');
-                    context.goNamed(Routes.dashboard);
+                    context.goNamed(Routes.navBar);
                   },
                 ),
                 const SizedBox(height: 30),

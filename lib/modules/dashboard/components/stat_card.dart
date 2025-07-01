@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:omniview/common/utils/size_config.dart';
 import 'package:omniview/config/theme/app_colors.dart';
 import 'package:omniview/config/theme/app_theme.dart';
 
@@ -24,6 +24,7 @@ class StatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 180.heightMultiplier,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -39,20 +40,13 @@ class StatCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(
-                minRadius: 18,
-                backgroundColor: Colors.black.withValues(alpha: 0.3),
-                child: Icon(icon, color: Colors.white),
-              ),
-              8.horizontalSpace,
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(title, style: context.medium.copyWith(fontSize: 16)),
-                  Text(subtitle, style: context.regular),
-                ],
+              Text(title, style: context.medium.copyWith(fontSize: 16)),
+              Text(
+                subtitle,
+                style: context.regular.copyWith(color: AppColors.limeGreen),
               ),
             ],
           ),

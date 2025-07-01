@@ -2,8 +2,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:omniview/common/utils/global_keys.dart';
 import 'package:omniview/modules/chat_bot/page/chat_bot.dart';
-import 'package:omniview/modules/dashboard/components/nav_bar.dart';
 import 'package:omniview/modules/login/page/login.dart';
+import 'package:omniview/modules/nav_bar/cubit/nav_bar_cubit.dart';
+import 'package:omniview/modules/nav_bar/page/nav_bar.dart';
 import 'package:omniview/modules/onboarding/cubit/onboarding_cubit.dart';
 import 'package:omniview/modules/onboarding/page/onboarding.dart';
 import 'package:omniview/modules/splash/bloc/splash_bloc.dart';
@@ -41,11 +42,14 @@ class Pages {
         builder: (context, state) => const Login(),
       ),
       GoRoute(
-        path: Routes.dashboard,
-        name: Routes.dashboard,
-        builder: (context, state) => const NavBar(),
+        path: Routes.navBar,
+        name: Routes.navBar,
+        builder: (context, state) => BlocProvider(
+          create: (context) => NavBarCubit(),
+          child: const NavBar(),
+        ),
       ),
-       GoRoute(
+      GoRoute(
         path: Routes.chatBot,
         name: Routes.chatBot,
         builder: (context, state) => const ChatBot(),

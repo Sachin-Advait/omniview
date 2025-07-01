@@ -10,11 +10,13 @@ import 'package:omniview/config/theme/app_theme.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final bool showBackButton;
+  final PreferredSizeWidget? bottom;
 
   const CustomAppBar({
     super.key,
     required this.title,
     this.showBackButton = false,
+    this.bottom,
   });
 
   @override
@@ -27,16 +29,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       titleSpacing: 0,
       backgroundColor: AppColors.deepNavy,
       title: Padding(
-        padding: const EdgeInsets.only(left: 15),
+        padding: const EdgeInsets.only(left: 5),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             if (showBackButton)
               InkWell(
                 onTap: () => context.pop(),
-                child: SvgPicture.asset(AppSvg.arrowBack),
+                child: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: SvgPicture.asset(AppSvg.arrowBack),
+                ),
               ),
-            if (showBackButton) 20.horizontalSpace else 10.horizontalSpace,
+            10.horizontalSpace,
             Expanded(
               child: Text(title, style: context.medium.copyWith(fontSize: 20)),
             ),
@@ -73,6 +78,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         10.horizontalSpace,
       ],
+      bottom: bottom,
     );
   }
 

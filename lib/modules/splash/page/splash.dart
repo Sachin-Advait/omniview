@@ -23,7 +23,7 @@ class Splash extends StatelessWidget {
             case NavigateToLoginActionState():
               Pages.appRouter.goNamed(Routes.login);
             case NavigateToDashboardActionState():
-              Pages.appRouter.goNamed(Routes.dashboard);
+              Pages.appRouter.goNamed(Routes.navBar);
           }
         },
         child: Column(

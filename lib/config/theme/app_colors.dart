@@ -6,7 +6,6 @@ class AppColors {
   static const Color white75 = Color(0xFFCACDCE);
   static const Color white50 = Color(0xFF959A9C);
 
-
   static const Color deepNavy = Color(0xFF19243B);
   static const Color primary = Color(0xFF7352C7);
   static const Color darkSlate = Color(0xFF26324D);
@@ -19,4 +18,5 @@ class AppColors {
   static const Color aquaGreen = Color(0xFF2EAFA8);
   static const Color softOrange = Color(0xFFF7BB63);
   static const Color amberOrange = Color(0xFFF39711);
+  static const Color limeGreen = Color(0xFF228B22);
 }

@@ -68,7 +68,7 @@ class _LoginState extends State<Login> {
                     hintText: 'Enter your Staff Id',
                     validator: CustomValidtion.isStaffId,
                     keyboardType: TextInputType.name,
-                    autovalidateMode: AutovalidateMode.onUnfocus,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     inputFormatters: [
                       FilteringTextInputFormatter.deny(RegExp(r'\s')),
                       LengthLimitingTextInputFormatter(10),
