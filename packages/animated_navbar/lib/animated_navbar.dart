@@ -24,7 +24,7 @@ class AnimatedNavbar extends StatelessWidget {
     required this.items,
     required this.onItemSelected,
   }) {
-    assert(height >= 55 && height <= 100);
+    // assert(height >= 55 && height <= 100);
     assert(items.length >= 2 && items.length <= 5);
     assert(iconSize >= 15 && iconSize <= 50);
   }
@@ -191,14 +191,18 @@ class _AnimatedNavbarItemState extends State<_AnimatedNavbarItem>
 
             // Fade-in selected icon
             if (widget.isSelected)
-              FadeTransition(
-                opacity: _fadeAnimation,
-                child: IconTheme(
-                  data: IconThemeData(
-                    size: widget.iconSize,
-                    color: widget.item.activeColor,
+              Padding(
+                padding:
+                    EdgeInsets.only(bottom: widget.showDotIndicator ? 12 : 0),
+                child: FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: IconTheme(
+                    data: IconThemeData(
+                      size: widget.iconSize,
+                      color: widget.item.activeColor,
+                    ),
+                    child: widget.item.icon,
                   ),
-                  child: widget.item.icon,
                 ),
               ),
 
@@ -211,7 +215,7 @@ class _AnimatedNavbarItemState extends State<_AnimatedNavbarItem>
                   child: Container(
                     width: 5,
                     height: 5,
-                    margin: const EdgeInsets.only(top: 40),
+                    margin: const EdgeInsets.only(top: 32),
                     decoration: BoxDecoration(
                       color: widget.item.activeColor,
                       borderRadius: BorderRadius.circular(2.5),
