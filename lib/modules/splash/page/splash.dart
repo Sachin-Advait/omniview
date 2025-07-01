@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:omniview/common/utils/size_config.dart';
 import 'package:omniview/config/assets/app_images.dart';
 import 'package:omniview/routes/Routes.dart';
 import 'package:omniview/routes/pages.dart';
@@ -28,13 +29,17 @@ class Splash extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Transform.rotate(
+              angle: 110,
+              child: Image.asset(AppImages.splashEffect),
+            ),
+            20.verticalSpace,
             Container(
               alignment: Alignment.center,
-              padding: const EdgeInsets.only(top: 200),
               child: Image.asset(AppImages.splashLogo, height: 140),
             ),
             Spacer(),
-            Image.asset(AppImages.splashEffect),
+            Image.asset(AppImages.splashLoader),
           ],
         ),
       ),

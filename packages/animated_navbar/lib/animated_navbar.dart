@@ -3,9 +3,7 @@ library;
 import 'package:flutter/material.dart';
 
 /// A Widget that displays a Bottom Navigation Bar with smooth animation.
-/// It is a wrapper around [BottomNavigationBar]
-/// [AnimatedNavbar] is a widget that displays a horizontal row of tabs, one tab at a time.
-/// The tabs are individually titled and, when tapped, switch to that tab.
+/// It is a wrapper around [BottomNavigationBar].
 class AnimatedNavbar extends StatelessWidget {
   AnimatedNavbar({
     super.key,
@@ -15,8 +13,8 @@ class AnimatedNavbar extends StatelessWidget {
     this.iconSize = 20,
     this.backgroundColor,
     this.showDotIndicator = true,
-    this.animationDuration = const Duration(milliseconds: 170),
-    this.animationCurve = Curves.linear,
+    this.animationDuration = const Duration(milliseconds: 300),
+    this.animationCurve = Curves.easeInOut,
     this.shadows = const [
       BoxShadow(
         color: Colors.black12,
@@ -37,7 +35,7 @@ class AnimatedNavbar extends StatelessWidget {
   final Color? backgroundColor;
   final double height;
   final double iconSize;
-  final List items;
+  final List<AnimatedNavbarItem> items;
   final ValueChanged<int> onItemSelected;
   final int selectedIndex;
   final List<BoxShadow> shadows;
@@ -45,9 +43,9 @@ class AnimatedNavbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bg = (backgroundColor == null)
-        ? Theme.of(context).bottomAppBarTheme.color ?? Colors.white
-        : backgroundColor;
+    final bg = backgroundColor ??
+        Theme.of(context).bottomAppBarTheme.color ??
+        Colors.white;
 
     return Container(
       padding: EdgeInsets.zero,
@@ -58,24 +56,21 @@ class AnimatedNavbar extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: height + iconSizeEffectCalculator(iconSize),
-        padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 0),
+        padding: const EdgeInsets.symmetric(vertical: 6),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: items.map((item) {
-            var index = items.indexOf(item);
+            final index = items.indexOf(item);
             return Expanded(
-              child: GestureDetector(
+              child: _AnimatedNavbarItem(
+                item: item,
+                isSelected: index == selectedIndex,
                 onTap: () => onItemSelected(index),
-                child: _AnimatedNavbarItem(
-                  item: item,
-                  tabBarHeight: height,
-                  iconSize: iconSize,
-                  showDotIndicator: showDotIndicator,
-                  isSelected: index == selectedIndex,
-                  backgroundColor: bg!,
-                  animationDuration: animationDuration,
-                  animationCurve: animationCurve,
-                ),
+                showDotIndicator: showDotIndicator,
+                backgroundColor: bg,
+                iconSize: iconSize,
+                animationDuration: animationDuration,
+                animationCurve: animationCurve,
               ),
             );
           }).toList(),
@@ -84,187 +79,149 @@ class AnimatedNavbar extends StatelessWidget {
     );
   }
 
-  /// A method that calculate the effect of [iconSize] on the [height] of the Bottom navigation bar
-  double iconSizeEffectCalculator(double size) => size > 30
-      ? size * 1.2
-      : size > 10
-          ? size * .6
-          : 0;
+  double iconSizeEffectCalculator(double size) {
+    return size > 30
+        ? size * 1.2
+        : size > 10
+            ? size * 0.6
+            : 0;
+  }
 }
 
-/// A single tab in the [AnimatedNavbar]. A tab has a title and an icon. The title is displayed when the item is not selected. The icon is displayed when the item is selected. Tabs are always used in conjunction with a [AnimatedNavbar].
+/// Represents each item (tab) in the navbar.
 class AnimatedNavbarItem {
   AnimatedNavbarItem({
     required this.icon,
-    required this.title,
     this.activeColor = const Color(0xff272e81),
     this.inactiveColor = const Color(0xff9496c1),
     this.enableAnimation = true,
     this.onTap,
   });
 
-  Color activeColor;
   final Widget icon;
-  Color inactiveColor;
-  final Widget title;
+  final Color activeColor;
+  final Color inactiveColor;
   final bool enableAnimation;
   final Function()? onTap;
 }
 
-class _AnimatedNavbarItem extends StatelessWidget {
-  const _AnimatedNavbarItem(
-      {required this.item,
-      required this.isSelected,
-      required this.tabBarHeight,
-      required this.showDotIndicator,
-      required this.backgroundColor,
-      required this.animationDuration,
-      required this.animationCurve,
-      required this.iconSize});
+class _AnimatedNavbarItem extends StatefulWidget {
+  const _AnimatedNavbarItem({
+    required this.item,
+    required this.isSelected,
+    required this.onTap,
+    required this.showDotIndicator,
+    required this.backgroundColor,
+    required this.animationDuration,
+    required this.animationCurve,
+    required this.iconSize,
+  });
 
-  final Curve animationCurve;
-  final bool showDotIndicator;
-  final Duration animationDuration;
-  final Color backgroundColor;
-  final double iconSize;
-  final bool isSelected;
   final AnimatedNavbarItem item;
-  final double tabBarHeight;
+  final bool isSelected;
+  final Function() onTap;
+  final bool showDotIndicator;
+  final Color backgroundColor;
+  final Duration animationDuration;
+  final Curve animationCurve;
+  final double iconSize;
+
+  @override
+  State<_AnimatedNavbarItem> createState() => _AnimatedNavbarItemState();
+}
+
+class _AnimatedNavbarItemState extends State<_AnimatedNavbarItem>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _fadeAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: widget.animationDuration,
+    );
+    _fadeAnimation = CurvedAnimation(
+      parent: _controller,
+      curve: widget.animationCurve,
+    );
+
+    if (widget.isSelected) _controller.forward();
+  }
+
+  @override
+  void didUpdateWidget(covariant _AnimatedNavbarItem oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.isSelected != widget.isSelected) {
+      if (widget.isSelected) {
+        _controller.forward();
+      } else {
+        _controller.reverse();
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    /// The icon is displayed when the item is not selected.
-    /// The title is displayed when the item is selected.
-    /// The icon and title are animated together.
-    /// The icon and title are animated in opposite directions.
-    return InkWell(
-      onTap: item.onTap,
+    return GestureDetector(
+      onTap: widget.item.onTap ?? widget.onTap,
       child: Container(
-          color: backgroundColor,
-          height: double.maxFinite,
-          child: Stack(
-            clipBehavior: Clip.hardEdge,
-            alignment: Alignment.center,
-            children: <Widget>[
-              AnimatedAlign(
-                duration: animationDuration,
-                alignment: isSelected ? Alignment.topCenter : Alignment.center,
-                child: AnimatedOpacity(
-                    opacity: !item.enableAnimation && isSelected
-                        ? 0
-                        : isSelected
-                            ? 1.0
-                            : 1.0,
-                    duration: !item.enableAnimation && isSelected
-                        ? Duration(seconds: 0)
-                        : animationDuration,
-                    child: IconTheme(
-                      data: IconThemeData(
-                          size: iconSize,
-                          color: isSelected
-                              ? item.activeColor.withOpacity(1)
-                              : item.inactiveColor),
-                      child: item.icon,
-                    )),
+        alignment: Alignment.center,
+        color: widget.backgroundColor,
+        height: double.infinity,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            // Static unselected icon
+            if (!widget.isSelected)
+              IconTheme(
+                data: IconThemeData(
+                  size: widget.iconSize,
+                  color: widget.item.inactiveColor,
+                ),
+                child: widget.item.icon,
               ),
-              if (item.enableAnimation)
-                AnimatedPositioned(
-                  curve: animationCurve,
-                  duration: animationDuration,
-                  top: isSelected ? -2.0 * iconSize : tabBarHeight / 4,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      SizedBox(
-                        width: iconSize,
-                        height: iconSize,
-                      ),
-                      CustomPaint(
-                        painter: _CustomPath(backgroundColor, iconSize),
-                        child: SizedBox(
-                          width: 80,
-                          height: iconSize,
-                        ),
-                      )
-                    ],
+
+            // Fade-in selected icon
+            if (widget.isSelected)
+              FadeTransition(
+                opacity: _fadeAnimation,
+                child: IconTheme(
+                  data: IconThemeData(
+                    size: widget.iconSize,
+                    color: widget.item.activeColor,
+                  ),
+                  child: widget.item.icon,
+                ),
+              ),
+
+            // Optional dot indicator
+            if (widget.showDotIndicator)
+              FadeTransition(
+                opacity: _fadeAnimation,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Container(
+                    width: 5,
+                    height: 5,
+                    margin: const EdgeInsets.only(top: 40),
+                    decoration: BoxDecoration(
+                      color: widget.item.activeColor,
+                      borderRadius: BorderRadius.circular(2.5),
+                    ),
                   ),
                 ),
-
-              AnimatedAlign(
-                  alignment:
-                      isSelected ? Alignment.center : Alignment.bottomCenter,
-                  duration: animationDuration,
-                  curve: animationCurve,
-                  child: AnimatedOpacity(
-                      opacity: isSelected ? 1.0 : 0.0,
-                      duration: animationDuration,
-                      child: DefaultTextStyle.merge(
-                        style: TextStyle(
-                          color: item.activeColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        child: item.title,
-                      ))),
-              // if (showDotIndicator)
-              //   Positioned(
-              //       bottom: 0,
-              //       child: CustomPaint(
-              //         painter: _CustomPath(backgroundColor, iconSize),
-              //         child: SizedBox(
-              //           width: 80,
-              //           height: iconSize,
-              //         ),
-              //       )),
-
-              /// This is the selected item indicator
-              if (showDotIndicator)
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: AnimatedOpacity(
-                      duration: animationDuration,
-                      opacity: isSelected ? 1.0 : 0.0,
-                      child: Container(
-                        width: 5,
-                        height: 5,
-                        alignment: Alignment.bottomCenter,
-                        margin: const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          color: item.activeColor,
-                          borderRadius: BorderRadius.circular(2.5),
-                        ),
-                      )),
-                )
-            ],
-          )),
+              ),
+          ],
+        ),
+      ),
     );
-  }
-}
-
-/// A [CustomPainter] that draws a [AnimatedNavbar] background.
-class _CustomPath extends CustomPainter {
-  _CustomPath(this.backgroundColor, this.iconSize);
-
-  final Color backgroundColor;
-  final double iconSize;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    Path path = Path();
-    Paint paint = Paint();
-
-    path.lineTo(0, 0);
-    path.lineTo(0, (iconSize * .2) * size.height);
-    path.lineTo(1.0 * size.width, (iconSize * .2) * size.height);
-    path.lineTo(1.0 * size.width, 1.0 * size.height);
-    path.lineTo(0, 0);
-    path.close();
-
-    paint.color = backgroundColor;
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return oldDelegate != this;
   }
 }

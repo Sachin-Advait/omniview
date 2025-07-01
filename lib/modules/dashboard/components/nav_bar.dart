@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:omniview/common/utils/size_config.dart';
 import 'package:omniview/config/assets/app_svg.dart';
 import 'package:omniview/config/theme/app_colors.dart';
-import 'package:omniview/config/theme/app_theme.dart';
 import 'package:omniview/modules/chat_bot/page/chat_bot.dart';
 import 'package:omniview/modules/dashboard/page/dashborad.dart';
 import 'package:omniview/modules/insight/page/insight.dart';
@@ -58,11 +57,11 @@ class _DashboardViewState extends State<NavBar> {
                 selectedIndex = index;
               }),
               items: [
-                flashyTabbar("Pulse", AppSvg.pulse, 0),
-                flashyTabbar("Insight", AppSvg.insight, 1),
-                flashyTabbar("Dashboard", AppSvg.dashboard, 2),
-                flashyTabbar("Chatbot", AppSvg.chatBot, 3),
-                flashyTabbar("Setting", AppSvg.setting, 4),
+                flashyTabbar(AppSvg.pulse, 0),
+                flashyTabbar(AppSvg.insight, 1),
+                flashyTabbar(AppSvg.dashboard, 2),
+                flashyTabbar(AppSvg.chatBot, 3),
+                flashyTabbar(AppSvg.setting, 4),
               ],
             ),
           ),
@@ -71,7 +70,7 @@ class _DashboardViewState extends State<NavBar> {
     );
   }
 
-  AnimatedNavbarItem flashyTabbar(String name, String svg, int index) {
+  AnimatedNavbarItem flashyTabbar(String svg, int index) {
     final iconColor = selectedIndex == index
         ? AppColors.white
         : AppColors.white75;
@@ -106,9 +105,7 @@ class _DashboardViewState extends State<NavBar> {
       onTap: index != 3
           ? null
           : () {
-              if (index == 3) {
-                context.pushNamed(Routes.chatBot);
-              }
+              context.pushNamed(Routes.chatBot);
             },
       enableAnimation: index == 2 ? false : true,
       activeColor: AppColors.white,
@@ -119,12 +116,6 @@ class _DashboardViewState extends State<NavBar> {
               height: 25.heightMultiplier,
               width: 25.widthMultiplier,
               colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
-            ),
-      title: index == 2
-          ? icon
-          : Text(
-              name,
-              style: context.medium.copyWith(color: Colors.white, fontSize: 16),
             ),
     );
   }
