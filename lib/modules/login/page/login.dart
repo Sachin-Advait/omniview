@@ -35,7 +35,7 @@ class _LoginState extends State<Login> {
                 250.verticalSpace,
                 Container(
                   alignment: Alignment.center,
-                  child: Image.asset(AppImages.appLogo, height: 140),
+                  child: Image.asset(AppImages.splashLogo, height: 140),
                 ),
                 40.verticalSpace,
                 Center(
