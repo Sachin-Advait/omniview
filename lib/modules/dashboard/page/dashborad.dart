@@ -24,55 +24,52 @@ class _DashboardState extends State<Dashboard> {
       length: 5,
       child: Scaffold(
         appBar: CustomAppBar(title: 'Dashboard'),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: Column(
-            children: [
-              StatBuilder(),
-              20.verticalSpace,
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(8)),
-                  color: AppColors.primary.withValues(alpha: .2),
-                ),
-                child: const TabBar(
-                  dividerHeight: 0,
-                  indicatorWeight: 0,
-                  indicatorPadding: EdgeInsetsGeometry.zero,
-                  padding: EdgeInsets.zero,
-                  tabAlignment: TabAlignment.start,
-                  isScrollable: true,
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  dividerColor: Colors.transparent,
-                  indicator: BoxDecoration(
-                    color: AppColors.primary,
-                    borderRadius: BorderRadius.all(Radius.circular(8)),
-                  ),
-                  labelColor: Colors.white,
-                  unselectedLabelColor: Colors.black54,
-                  tabs: [
-                    TabItem(title: 'Growth'),
-                    TabItem(title: 'Profit'),
-                    TabItem(title: 'Customer'),
-                    TabItem(title: 'People'),
-                    TabItem(title: 'Risk & Esg'),
-                  ],
-                ),
+        body: Column(
+          children: [
+            StatBuilder(),
+            20.verticalSpace,
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 12),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                color: AppColors.primary.withValues(alpha: .2),
               ),
-
-              Expanded(
-                child: TabBarView(
-                  children: const [
-                    _TabContent(child: Growth()),
-                    _TabContent(child: Profit()),
-                    _TabContent(child: Customer()),
-                    _TabContent(child: People()),
-                    _TabContent(child: RiskEsg()),
-                  ],
+              child: const TabBar(
+                dividerHeight: 0,
+                indicatorWeight: 0,
+                indicatorPadding: EdgeInsetsGeometry.zero,
+                tabAlignment: TabAlignment.start,
+                isScrollable: true,
+                indicatorSize: TabBarIndicatorSize.tab,
+                dividerColor: Colors.transparent,
+                indicator: BoxDecoration(
+                  color: AppColors.primary,
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
                 ),
+                labelColor: Colors.white,
+                unselectedLabelColor: Colors.black54,
+                tabs: [
+                  TabItem(title: 'Growth'),
+                  TabItem(title: 'Profit'),
+                  TabItem(title: 'Customer'),
+                  TabItem(title: 'People'),
+                  TabItem(title: 'Risk & Esg'),
+                ],
               ),
-            ],
-          ),
+            ),
+            1.verticalSpace,
+            Expanded(
+              child: TabBarView(
+                children: const [
+                  _TabContent(child: Growth()),
+                  _TabContent(child: Profit()),
+                  _TabContent(child: Customer()),
+                  _TabContent(child: People()),
+                  _TabContent(child: RiskEsg()),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -85,6 +82,9 @@ class _TabContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(children: [20.verticalSpace, child, 80.verticalSpace]);
+    return ListView(
+      shrinkWrap: true,
+      children: [20.verticalSpace, child, 120.verticalSpace],
+    );
   }
 }

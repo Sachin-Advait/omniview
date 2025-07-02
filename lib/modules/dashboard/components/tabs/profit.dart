@@ -11,40 +11,43 @@ class Profit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        LabeledDonutChart(
-          title: 'EBITDA Margin %',
-          sections: [
-            PieChartSectionData(
-              value: 25,
-              title: 'A',
-              titlePositionPercentageOffset: 1.6,
-              color: AppColors.primary,
-              radius: 20,
-              titleStyle: context.medium.copyWith(fontSize: 12),
-            ),
-            PieChartSectionData(
-              value: 30,
-              title: 'B',
-              titlePositionPercentageOffset: 1.6,
-              color: AppColors.royalBlue,
-              radius: 20,
-              titleStyle: context.medium.copyWith(fontSize: 12),
-            ),
-            PieChartSectionData(
-              value: 45,
-              title: 'C',
-              titlePositionPercentageOffset: 1.6,
-              color: AppColors.limeGreen.withOpacity(0.6),
-              radius: 20,
-              titleStyle: context.medium.copyWith(fontSize: 12),
-            ),
-          ],
-        ),
-        20.verticalSpace,
-        RadialProgressChart(title: 'Net Promoter Score', progress: 31),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: Column(
+        children: [
+          LabeledDonutChart(
+            title: 'EBITDA Margin %',
+            sections: [
+              PieChartSectionData(
+                value: 25,
+                title: 'A',
+                titlePositionPercentageOffset: 1.6,
+                color: AppColors.primary,
+                radius: 20,
+                titleStyle: context.medium.copyWith(fontSize: 12),
+              ),
+              PieChartSectionData(
+                value: 30,
+                title: 'B',
+                titlePositionPercentageOffset: 1.6,
+                color: AppColors.royalBlue,
+                radius: 20,
+                titleStyle: context.medium.copyWith(fontSize: 12),
+              ),
+              PieChartSectionData(
+                value: 45,
+                title: 'C',
+                titlePositionPercentageOffset: 1.6,
+                color: AppColors.limeGreen.withOpacity(0.6),
+                radius: 20,
+                titleStyle: context.medium.copyWith(fontSize: 12),
+              ),
+            ],
+          ),
+          20.verticalSpace,
+          RadialProgressChart(title: 'Net Promoter Score', progress: 31),
+        ],
+      ),
     );
   }
 }
