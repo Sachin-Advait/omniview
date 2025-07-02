@@ -12,10 +12,45 @@ class Insight12month extends StatelessWidget {
       aspectRatio: 2.2,
       child: LineChart(
         LineChartData(
+          clipData: FlClipData.all(),
           minY: 0,
           maxY: 100,
-          gridData: FlGridData(show: true),
-          borderData: FlBorderData(show: false),
+          maxX: 10,
+          gridData: FlGridData(
+            show: true,
+            drawVerticalLine: true,
+            drawHorizontalLine: true,
+            horizontalInterval: 50,
+            verticalInterval: 2,
+          ),
+          borderData: FlBorderData(
+            show: true,
+            border: const Border(
+              left: BorderSide(color: AppColors.white50, width: 0.5),
+              bottom: BorderSide(color: AppColors.white50, width: 0.5),
+              right: BorderSide.none,
+              top: BorderSide.none,
+            ),
+          ),
+          extraLinesData: ExtraLinesData(
+            horizontalLines: [
+              HorizontalLine(
+                y: 100,
+                color: AppColors.white.withValues(alpha: .3),
+                dashArray: [7, 6],
+                strokeWidth: .5,
+              ),
+            ],
+            verticalLines: [
+              VerticalLine(
+                x: 10,
+                color: AppColors.white.withValues(alpha: .3),
+                dashArray: [7, 6],
+                strokeWidth: .5,
+              ),
+            ],
+          ),
+
           titlesData: FlTitlesData(
             leftTitles: AxisTitles(
               sideTitles: SideTitles(
@@ -75,6 +110,7 @@ class Insight12month extends StatelessWidget {
                 FlSpot(8, 90),
                 FlSpot(9, 72),
                 FlSpot(10, 71),
+                FlSpot(11, 51),
               ],
             ),
           ],

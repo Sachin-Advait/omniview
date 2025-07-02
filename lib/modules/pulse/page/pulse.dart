@@ -1,3 +1,4 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:omniview/common/utils/size_config.dart';
 import 'package:omniview/common/widgets/chart_card.dart';
@@ -22,45 +23,64 @@ class Pulse extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      'Revenue Achievement % - \nsudden drop  -',
-                      style: context.medium.copyWith(fontSize: 16),
-                    ),
-                    6.horizontalSpace,
-                    Container(
-                      margin: EdgeInsets.only(bottom: 6),
-                      height: 10,
-                      width: 10,
-                      decoration: BoxDecoration(
-                        color: AppColors.royalBlue,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
+                Text(
+                  'Revenue Achievement % - sudden drop',
+                  style: context.medium.copyWith(fontSize: 16),
+                ),
+
+                20.verticalSpace,
+                PulseLineChart(
+                  interval: 10,
+                  dataPoints: [
+                    FlSpot(-5, 80),
+                    FlSpot(0, 65),
+                    FlSpot(10, 75),
+                    FlSpot(20, 95),
+                    FlSpot(30, 71),
+                    FlSpot(40, 85),
+                    FlSpot(50, 79),
+                    FlSpot(60, 69),
+                    FlSpot(65, 69),
                   ],
                 ),
-                5.verticalSpace,
-                Row(
-                  children: [
-                    Text(
-                      'Revenue Achievement % - spike - ',
-                      style: context.medium.copyWith(fontSize: 16),
-                    ),
-                    6.horizontalSpace,
-                    Container(
-                      height: 10,
-                      width: 10,
-                      decoration: BoxDecoration(
-                        color: AppColors.rosePink,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
-                  ],
+              ],
+            ),
+          ),
+          20.verticalSpace,
+          ChartCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Revenue Achievement % - spike',
+                  style: context.medium.copyWith(fontSize: 16),
                 ),
                 20.verticalSpace,
-                PulseLineChart(),
+                PulseLineChart(
+                  interval: 20,
+                  spike: ExtraLinesData(
+                    verticalLines: [
+                      VerticalLine(
+                        x: 55,
+                        color: AppColors.deepRose,
+                        dashArray: [7, 6],
+                        strokeWidth: 2.5,
+                      ),
+                    ],
+                  ),
+                  dataPoints: [
+                    FlSpot(-5, 50),
+                    FlSpot(0, 59),
+                    FlSpot(10, 55),
+                    FlSpot(20, 65),
+                    FlSpot(30, 61),
+                    FlSpot(40, 65),
+                    FlSpot(50, 69),
+                    FlSpot(55, 87),
+                    FlSpot(60, 55),
+                    FlSpot(65, 69),
+                  ],
+                ),
               ],
             ),
           ),

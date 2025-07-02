@@ -15,25 +15,6 @@ class Insight6month extends StatelessWidget {
           alignment: BarChartAlignment.spaceAround,
           minY: 0,
           maxY: 100,
-          extraLinesData: ExtraLinesData(
-            horizontalLines: [
-              HorizontalLine(
-                y: 0,
-                color: Colors.grey,
-                strokeWidth: 1,
-                dashArray: [5, 3],
-              ),
-            ],
-            verticalLines: [
-              VerticalLine(
-                x: 0,
-                strokeCap: StrokeCap.round,
-                color: Colors.teal,
-                strokeWidth: 1,
-                dashArray: [5, 3],
-              ),
-            ],
-          ),
           barGroups: [
             BarChartGroupData(
               x: 0,
@@ -100,19 +81,21 @@ class Insight6month extends StatelessWidget {
               sideTitles: SideTitles(showTitles: true, reservedSize: 30),
             ),
           ),
-          borderData: FlBorderData(show: false),
+          borderData: FlBorderData(
+            show: true,
+            border: const Border(
+              left: BorderSide(color: AppColors.white50, width: 0.5),
+              bottom: BorderSide(color: AppColors.white50, width: 0.5),
+              right: BorderSide.none,
+              top: BorderSide.none,
+            ),
+          ),
           gridData: FlGridData(
             show: true,
-            drawVerticalLine: false, // We'll draw custom vertical lines
+            drawVerticalLine: true,
             drawHorizontalLine: true,
-            horizontalInterval: 25,
-            getDrawingHorizontalLine: (value) {
-              return FlLine(
-                color: Colors.grey.shade400,
-                strokeWidth: 1,
-                dashArray: [3, 3], // Horizontal dashed lines
-              );
-            },
+            horizontalInterval: 50,
+            verticalInterval: .1,
           ),
         ),
       ),

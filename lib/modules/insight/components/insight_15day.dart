@@ -14,7 +14,42 @@ class Insight15day extends StatelessWidget {
       child: LineChart(
         LineChartData(
           minY: 90,
-          maxY: 110,
+          // maxY: 110,
+          // maxX: 40,
+          gridData: FlGridData(
+            show: true,
+            drawVerticalLine: true,
+            drawHorizontalLine: true,
+            horizontalInterval: 50,
+            verticalInterval: 10,
+          ),
+          extraLinesData: ExtraLinesData(
+            horizontalLines: [
+              HorizontalLine(
+                y: 110,
+                color: AppColors.white.withValues(alpha: .5),
+                dashArray: [7, 6],
+                strokeWidth: .5,
+              ),
+            ],
+            verticalLines: [
+              VerticalLine(
+                x: 40,
+                color: AppColors.white.withValues(alpha: .5),
+                dashArray: [7, 6],
+                strokeWidth: .5,
+              ),
+            ],
+          ),
+          borderData: FlBorderData(
+            show: true,
+            border: const Border(
+              left: BorderSide(color: AppColors.white50, width: 0.5),
+              bottom: BorderSide(color: AppColors.white50, width: 0.5),
+              right: BorderSide.none,
+              top: BorderSide.none,
+            ),
+          ),
           lineBarsData: [
             LineChartBarData(
               isCurved: true,
@@ -24,9 +59,10 @@ class Insight15day extends StatelessWidget {
               spots: [
                 FlSpot(0, 100),
                 FlSpot(10, 95),
-                FlSpot(20, 110),
+                FlSpot(20, 115),
                 FlSpot(30, 105),
                 FlSpot(40, 95),
+                FlSpot(45, 85),
               ],
               // showingIndicators: [1],
             ),
@@ -36,7 +72,11 @@ class Insight15day extends StatelessWidget {
               sideTitles: SideTitles(
                 showTitles: true,
                 reservedSize: 40,
+                interval: 10,
                 getTitlesWidget: (value, meta) {
+                  if (value % 10 != 0) {
+                    return const SizedBox.shrink();
+                  }
                   return Padding(
                     padding: const EdgeInsets.only(right: 8),
                     child: Text(value.toInt().toString()),
@@ -50,26 +90,24 @@ class Insight15day extends StatelessWidget {
                 minIncluded: true,
                 showTitles: true,
                 getTitlesWidget: (value, meta) {
+                  if (value % 10 != 0) {
+                    return const SizedBox.shrink();
+                  }
+
                   return Padding(
-                    padding: const EdgeInsets.only(
-                      top: 20,
-                      // left: 40,
-                    ),
+                    padding: const EdgeInsets.only(top: 20),
                     child: Text(
                       value.toInt().toString(),
                       style: context.regular.copyWith(fontSize: 14),
                     ),
                   );
                 },
-                interval: 10,
               ),
             ),
             rightTitles: AxisTitles(),
             topTitles: AxisTitles(),
           ),
-          clipData: FlClipData.none(),
-          gridData: FlGridData(show: true),
-          borderData: FlBorderData(show: false),
+          clipData: FlClipData.all(),
         ),
       ),
     );
