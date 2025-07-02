@@ -24,51 +24,55 @@ class _DashboardState extends State<Dashboard> {
       length: 5,
       child: Scaffold(
         appBar: CustomAppBar(title: 'Dashboard'),
-        body: Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 12),
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(8)),
-                color: AppColors.primary.withValues(alpha: .2),
-              ),
-              child: const TabBar(
-                dividerHeight: 0,
-                indicatorWeight: 0,
-                indicatorPadding: EdgeInsetsGeometry.zero,
-                padding: EdgeInsets.zero,
-                tabAlignment: TabAlignment.start,
-                isScrollable: true,
-                indicatorSize: TabBarIndicatorSize.tab,
-                dividerColor: Colors.transparent,
-                indicator: BoxDecoration(
-                  color: AppColors.primary,
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: Column(
+            children: [
+              StatBuilder(),
+              20.verticalSpace,
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(8)),
+                  color: AppColors.primary.withValues(alpha: .2),
                 ),
-                labelColor: Colors.white,
-                unselectedLabelColor: Colors.black54,
-                tabs: [
-                  TabItem(title: 'Growth'),
-                  TabItem(title: 'Profit'),
-                  TabItem(title: 'Customer'),
-                  TabItem(title: 'People'),
-                  TabItem(title: 'Risk & Esg'),
-                ],
+                child: const TabBar(
+                  dividerHeight: 0,
+                  indicatorWeight: 0,
+                  indicatorPadding: EdgeInsetsGeometry.zero,
+                  padding: EdgeInsets.zero,
+                  tabAlignment: TabAlignment.start,
+                  isScrollable: true,
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  dividerColor: Colors.transparent,
+                  indicator: BoxDecoration(
+                    color: AppColors.primary,
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
+                  labelColor: Colors.white,
+                  unselectedLabelColor: Colors.black54,
+                  tabs: [
+                    TabItem(title: 'Growth'),
+                    TabItem(title: 'Profit'),
+                    TabItem(title: 'Customer'),
+                    TabItem(title: 'People'),
+                    TabItem(title: 'Risk & Esg'),
+                  ],
+                ),
               ),
-            ),
 
-            Expanded(
-              child: TabBarView(
-                children: const [
-                  _TabContent(child: Growth()),
-                  _TabContent(child: Profit()),
-                  _TabContent(child: Customer()),
-                  _TabContent(child: People()),
-                  _TabContent(child: RiskEsg()),
-                ],
+              Expanded(
+                child: TabBarView(
+                  children: const [
+                    _TabContent(child: Growth()),
+                    _TabContent(child: Profit()),
+                    _TabContent(child: Customer()),
+                    _TabContent(child: People()),
+                    _TabContent(child: RiskEsg()),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -81,15 +85,6 @@ class _TabContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      children: [
-        20.verticalSpace,
-        StatBuilder(),
-        20.verticalSpace,
-        child,
-        120.verticalSpace,
-      ],
-    );
+    return ListView(children: [20.verticalSpace, child, 80.verticalSpace]);
   }
 }

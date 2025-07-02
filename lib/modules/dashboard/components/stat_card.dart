@@ -42,7 +42,7 @@ class StatCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: context.medium.copyWith(fontSize: 16)),
+              Text(title, style: context.medium.copyWith(fontSize: 15)),
               Text(
                 subtitle,
                 style: context.regular.copyWith(color: AppColors.limeGreen),
@@ -52,7 +52,7 @@ class StatCard extends StatelessWidget {
           6.verticalSpace,
           Row(
             children: [
-              Text(value, style: context.medium.copyWith(fontSize: 20)),
+              Text(value, style: context.medium.copyWith(fontSize: 18)),
               10.horizontalSpace,
               trailing,
             ],
