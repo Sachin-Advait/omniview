@@ -2,7 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NavBarCubit extends Cubit<int> {
-  NavBarCubit() : super(2);
+  NavBarCubit() : super(0);
 
   void setIndex(int index) => emit(index);
 

@@ -21,9 +21,6 @@ dependencies:
   fluttertoast: ^8.2.12
   fl_chart: ^1.0.0
   percent_indicator: ^4.2.5
-  animated_navbar:
-    path: packages/animated_navbar
-    
 
 dev_dependencies:
   flutter_test:
@@ -59,4 +56,3 @@ flutter:
           weight: 400
         - asset: assets/fonts/Poppins-Light.ttf
           weight: 300
-
