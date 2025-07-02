@@ -27,8 +27,11 @@ class StatCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [color, AppColors.darkSlate],
-          stops: [0.1, .4],
+          colors: [
+            Color.lerp(color, AppColors.darkSlate, 0.6)!,
+            AppColors.deepNavy,
+          ],
+          stops: [0.0, 1.0],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           transform: GradientRotation(.4),

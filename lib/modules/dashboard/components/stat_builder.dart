@@ -37,7 +37,7 @@ class StatBuilder extends StatelessWidget {
               title: 'NPS',
               subtitle: '▲2',
               value: '62',
-              color: AppColors.cyan.withValues(alpha: .5),
+              color: AppColors.limeGreen.withValues(alpha: .5),
               trailing: Icon(Icons.show_chart, color: AppColors.cyan),
             ),
             10.horizontalSpace,
