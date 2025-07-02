@@ -6,3 +6,12 @@ sealed class LoginEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class LoginRequested extends LoginEvent {
+  final String staffId;
+
+  const LoginRequested(this.staffId);
+
+  @override
+  List<Object> get props => [staffId];
+}

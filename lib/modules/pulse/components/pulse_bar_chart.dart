@@ -1,109 +1,61 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:omniview/config/theme/app_colors.dart';
+import 'package:omniview/config/theme/app_theme.dart';
 
 class PulseBarChart extends StatelessWidget {
   const PulseBarChart({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final values = [65, 100, 60, 110, 85, 55, 105, 75, 100, 80, 60];
+
+    final barGroups = List.generate(values.length, (index) {
+      final value = values[index];
+      return BarChartGroupData(
+        x: index,
+        barRods: [
+          BarChartRodData(
+            toY: value.toDouble(),
+            color: Colors.deepPurple,
+            width: 10,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(2),
+              topRight: Radius.circular(2),
+            ),
+          ),
+        ],
+      );
+    });
+
     return AspectRatio(
       aspectRatio: 1.3,
       child: BarChart(
         BarChartData(
-          borderData: FlBorderData(show: false),
+          borderData: FlBorderData(
+            show: true,
+            border: const Border(
+              left: BorderSide(color: AppColors.white50, width: 0.5),
+              bottom: BorderSide(color: AppColors.white50, width: 0.5),
+              right: BorderSide.none,
+              top: BorderSide.none,
+            ),
+          ),
           alignment: BarChartAlignment.spaceAround,
           gridData: FlGridData(
             show: true,
-            drawVerticalLine: false,
+            drawVerticalLine: true,
             drawHorizontalLine: true,
-            horizontalInterval: 25,
-            getDrawingHorizontalLine: (value) {
-              return FlLine(
-                color: Colors.grey.shade400,
-                strokeWidth: 1,
-                dashArray: [3, 3],
-              );
-            },
+            horizontalInterval: 50,
           ),
-          maxY: 125,
-          barGroups: [
-            BarChartGroupData(
-              x: 0,
-              barRods: [
-                BarChartRodData(toY: 65, color: Colors.deepPurple, width: 10),
-              ],
-            ),
-            BarChartGroupData(
-              x: 1,
-              barRods: [
-                BarChartRodData(toY: 100, color: Colors.deepPurple, width: 10),
-              ],
-            ),
-            BarChartGroupData(
-              x: 2,
-              barRods: [
-                BarChartRodData(toY: 60, color: Colors.deepPurple, width: 10),
-              ],
-            ),
-            BarChartGroupData(
-              x: 3,
-              barRods: [
-                BarChartRodData(toY: 110, color: Colors.deepPurple, width: 10),
-              ],
-            ),
-            BarChartGroupData(
-              x: 4,
-              barRods: [
-                BarChartRodData(toY: 85, color: Colors.deepPurple, width: 10),
-              ],
-            ),
-            BarChartGroupData(
-              x: 5,
-              barRods: [
-                BarChartRodData(toY: 55, color: Colors.deepPurple, width: 10),
-              ],
-            ),
-            BarChartGroupData(
-              x: 6,
-              barRods: [
-                BarChartRodData(toY: 105, color: Colors.deepPurple, width: 10),
-              ],
-            ),
-            BarChartGroupData(
-              x: 7,
-              barRods: [
-                BarChartRodData(toY: 75, color: Colors.deepPurple, width: 10),
-              ],
-            ),
-            BarChartGroupData(
-              x: 8,
-              barRods: [
-                BarChartRodData(toY: 100, color: Colors.deepPurple, width: 10),
-              ],
-            ),
-            BarChartGroupData(
-              x: 9,
-              barRods: [
-                BarChartRodData(toY: 80, color: Colors.deepPurple, width: 10),
-              ],
-            ),
-            BarChartGroupData(
-              x: 10,
-              barRods: [
-                BarChartRodData(toY: 60, color: Colors.deepPurple, width: 10),
-              ],
-            ),
-          ],
+          barGroups: barGroups,
           titlesData: FlTitlesData(
             leftTitles: AxisTitles(
               sideTitles: SideTitles(
                 showTitles: true,
                 reservedSize: 30,
-                interval: 25,
-                getTitlesWidget: (value, meta) => Text(
-                  '${value.toInt()}',
-                  style: TextStyle(color: Colors.white70, fontSize: 10),
-                ),
+                interval: 50,
+                maxIncluded: false,
               ),
             ),
             bottomTitles: AxisTitles(
@@ -111,10 +63,15 @@ class PulseBarChart extends StatelessWidget {
               sideTitles: SideTitles(
                 showTitles: true,
                 interval: 2,
-                getTitlesWidget: (value, meta) => Text(
-                  '${value.toInt()}',
-                  style: TextStyle(color: Colors.white70, fontSize: 10),
-                ),
+                getTitlesWidget: (value, meta) {
+                  if (value % 2 == 0) {
+                    return Text(
+                      '${value.toInt()}',
+                      style: context.medium.copyWith(fontSize: 12),
+                    );
+                  }
+                  return SizedBox();
+                },
               ),
             ),
             topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),

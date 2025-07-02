@@ -1,0 +1,882 @@
+[
+  {
+    "staffId": "Ceo2342",
+    "name": "Alice Johnson",
+    "role": "ceo",
+    "tabs": [
+      {
+        "name": "Growth",
+        "charts": [
+          {
+            "type": "lineChart",
+            "title": "Market Share %",
+            "data": {
+              "minY": 50,
+              "maxY": 100,
+              "benchmarkY": 80,
+              "dataPoints": [
+                [0, 80],
+                [1, 78],
+                [2, 76],
+                [3, 74],
+                [4, 72],
+                [5, 70],
+                [6, 68]
+              ]
+            }
+          },
+          {
+            "type": "barChart",
+            "title": "Free Cash Flow ($M)",
+            "data": {
+              "minY": 0,
+              "maxY": 100,
+              "benchmarkY": 65,
+              "values": [90, 70, 60, 85]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Profit",
+        "charts": [
+          {
+            "type": "donutChart",
+            "title": "EBITDA Margin %",
+            "data": {
+              "sections": [
+                {
+                  "value": 30,
+                  "title": "A",
+                  "color": "primary"
+                },
+                {
+                  "value": 25,
+                  "title": "B",
+                  "color": "royalBlue"
+                },
+                {
+                  "value": 45,
+                  "title": "C",
+                  "color": "limeGreen"
+                }
+              ]
+            }
+          },
+          {
+            "type": "radialProgress",
+            "title": "Net Promoter Score",
+            "data": {
+              "progress": 31.0
+            }
+          }
+        ]
+      },
+      {
+        "name": "Customer",
+        "charts": [
+          {
+            "type": "lineChart",
+            "title": "Market Share %",
+            "data": {
+              "minY": 50,
+              "maxY": 100,
+              "benchmarkY": 80,
+              "dataPoints": [
+                [0, 90],
+                [1, 86],
+                [2, 82],
+                [3, 78],
+                [4, 74],
+                [5, 70],
+                [6, 66]
+              ]
+            }
+          },
+          {
+            "type": "barChart",
+            "title": "Free Cash Flow ($M)",
+            "data": {
+              "minY": 0,
+              "maxY": 100,
+              "benchmarkY": 65,
+              "values": [95, 88, 50, 77]
+            }
+          }
+        ]
+      },
+      {
+        "name": "People",
+        "charts": [
+          {
+            "type": "donutChart",
+            "title": "Digital Adoption %",
+            "data": {
+              "sections": [
+                {
+                  "value": 30,
+                  "title": "A",
+                  "color": "primary"
+                },
+                {
+                  "value": 25,
+                  "title": "B",
+                  "color": "royalBlue"
+                },
+                {
+                  "value": 45,
+                  "title": "C",
+                  "color": "limeGreen"
+                }
+              ]
+            }
+          },
+          {
+            "type": "radialProgress",
+            "title": "Talent Health Index",
+            "data": {
+              "progress": 71.0
+            }
+          }
+        ]
+      },
+      {
+        "name": "Risk & ESG",
+        "charts": [
+          {
+            "type": "lineChart",
+            "title": "Risk Exposure Score",
+            "data": {
+              "minY": 50,
+              "maxY": 100,
+              "benchmarkY": 80,
+              "dataPoints": [
+                [0, 70],
+                [1, 73],
+                [2, 76],
+                [3, 79],
+                [4, 82],
+                [5, 85],
+                [6, 88]
+              ]
+            }
+          },
+          {
+            "type": "barChart",
+            "title": "ESG Compliance %",
+            "data": {
+              "minY": 0,
+              "maxY": 100,
+              "benchmarkY": 85.2,
+              "values": [80, 75, 65, 78]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "staffId": "Ctdo2422",
+    "name": "Bob Smith",
+    "role": "ctdo",
+    "tabs": [
+      {
+        "name": "Reliability",
+        "charts": [
+          {
+            "type": "lineChart",
+            "title": "Platform Uptime %",
+            "data": {
+              "minY": 50,
+              "maxY": 100,
+              "benchmarkY": 99.95,
+              "dataPoints": [
+                [0, 80],
+                [1, 78],
+                [2, 76],
+                [3, 74],
+                [4, 72],
+                [5, 70],
+                [6, 68]
+              ]
+            }
+          },
+          {
+            "type": "barChart",
+            "title": "API Latency p95 (ms)",
+            "data": {
+              "minY": 0,
+              "maxY": 100,
+              "benchmarkY": 170.0,
+              "values": [90, 70, 60, 85]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Dev Velocity",
+        "charts": [
+          {
+            "type": "donutChart",
+            "title": "Deploy Frequency /day",
+            "data": {
+              "sections": [
+                {
+                  "value": 30,
+                  "title": "A",
+                  "color": "primary"
+                },
+                {
+                  "value": 25,
+                  "title": "B",
+                  "color": "royalBlue"
+                },
+                {
+                  "value": 45,
+                  "title": "C",
+                  "color": "limeGreen"
+                }
+              ]
+            }
+          },
+          {
+            "type": "radialProgress",
+            "title": "Mean Time to Recover (hrs)",
+            "data": {
+              "progress": 1.0
+            }
+          }
+        ]
+      },
+      {
+        "name": "Cost & Cloud",
+        "charts": [
+          {
+            "type": "lineChart",
+            "title": "Cloud Spend ($k)",
+            "data": {
+              "minY": 50,
+              "maxY": 100,
+              "benchmarkY": 80,
+              "dataPoints": [
+                [0, 80],
+                [1, 78],
+                [2, 76],
+                [3, 74],
+                [4, 72],
+                [5, 70],
+                [6, 68]
+              ]
+            }
+          },
+          {
+            "type": "barChart",
+            "title": "Tech Debt Index",
+            "data": {
+              "minY": 0,
+              "maxY": 100,
+              "benchmarkY": 65,
+              "values": [90, 70, 60, 85]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Security",
+        "charts": [
+          {
+            "type": "donutChart",
+            "title": "Open Critical CVEs",
+            "data": {
+              "sections": [
+                {
+                  "value": 30,
+                  "title": "A",
+                  "color": "primary"
+                },
+                {
+                  "value": 25,
+                  "title": "B",
+                  "color": "royalBlue"
+                },
+                {
+                  "value": 45,
+                  "title": "C",
+                  "color": "limeGreen"
+                }
+              ]
+            }
+          },
+          {
+            "type": "radialProgress",
+            "title": "R&D ROI %",
+            "data": {
+              "progress": 35
+            }
+          }
+        ]
+      },
+      {
+        "name": "Digital Usage",
+        "charts": [
+          {
+            "type": "lineChart",
+            "title": "Digital MAU (k)",
+            "data": {
+              "minY": 50,
+              "maxY": 100,
+              "benchmarkY": 80,
+              "dataPoints": [
+                [0, 80],
+                [1, 78],
+                [2, 76],
+                [3, 74],
+                [4, 72],
+                [5, 70],
+                [6, 68]
+              ]
+            }
+          },
+          {
+            "type": "barChart",
+            "title": "Innovation Pipeline (#POCs)",
+            "data": {
+              "minY": 0,
+              "maxY": 100,
+              "benchmarkY": 65,
+              "values": [90, 70, 60, 85]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "staffId": "Cpo232",
+    "name": "Carol White",
+    "role": "cpo",
+    "tabs": [
+      {
+        "name": "Workforce",
+        "charts": [
+          {
+            "type": "lineChart",
+            "title": "Headcount Plan Fulfilment % ",
+            "data": {
+              "minY": 50,
+              "maxY": 100,
+              "benchmarkY": 10.0,
+              "dataPoints": [
+                [0, 80],
+                [1, 78],
+                [2, 76],
+                [3, 74],
+                [4, 72],
+                [5, 70],
+                [6, 68]
+              ]
+            }
+          },
+          {
+            "type": "barChart",
+            "title": "Regrettable Attrition %",
+            "data": {
+              "minY": 0,
+              "maxY": 100,
+              "benchmarkY": 10.0,
+              "values": [90, 70, 60, 85]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Talent Risk",
+        "charts": [
+          {
+            "type": "donutChart",
+            "title": "Engagement Score",
+            "data": {
+              "sections": [
+                {
+                  "value": 30,
+                  "title": "A",
+                  "color": "primary"
+                },
+                {
+                  "value": 25,
+                  "title": "B",
+                  "color": "royalBlue"
+                },
+                {
+                  "value": 45,
+                  "title": "C",
+                  "color": "limeGreen"
+                }
+              ]
+            }
+          },
+          {
+            "type": "radialProgress",
+            "title": "Hiring Velocity (days)",
+            "data": {
+              "progress": 44.0
+            }
+          }
+        ]
+      },
+      {
+        "name": "Engagement",
+        "charts": [
+          {
+            "type": "lineChart",
+            "title": "Diversity Index",
+            "data": {
+              "minY": 50,
+              "maxY": 100,
+              "benchmarkY": 85.2,
+              "dataPoints": [
+                [0, 80],
+                [1, 78],
+                [2, 76],
+                [3, 74],
+                [4, 72],
+                [5, 70],
+                [6, 68]
+              ]
+            }
+          },
+          {
+            "type": "barChart",
+            "title": "Absenteeism %",
+            "data": {
+              "minY": 0,
+              "maxY": 100,
+              "benchmarkY": 3.2,
+              "values": [90, 70, 60, 85]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Diversity",
+        "charts": [
+          {
+            "type": "donutChart",
+            "title": "Learning Hours /FTE ",
+            "data": {
+              "sections": [
+                {
+                  "value": 30,
+                  "title": "A",
+                  "color": "primary"
+                },
+                {
+                  "value": 25,
+                  "title": "B",
+                  "color": "royalBlue"
+                },
+                {
+                  "value": 45,
+                  "title": "C",
+                  "color": "limeGreen"
+                }
+              ]
+            }
+          },
+          {
+            "type": "radialProgress",
+            "title": "Succession Coverage %",
+            "data": {
+              "progress": 35
+            }
+          }
+        ]
+      },
+      {
+        "name": "HR Service",
+        "charts": [
+          {
+            "type": "lineChart",
+            "title": "Compensation Ratio vs Market",
+            "data": {
+              "minY": 50,
+              "maxY": 100,
+              "benchmarkY": 85.2,
+              "dataPoints": [
+                [0, 80],
+                [1, 78],
+                [2, 76],
+                [3, 74],
+                [4, 72],
+                [5, 70],
+                [6, 68]
+              ]
+            }
+          },
+          {
+            "type": "barChart",
+            "title": "HR Service SLA %",
+            "data": {
+              "minY": 0,
+              "maxY": 100,
+              "benchmarkY": 65,
+              "values": [90, 70, 60, 85]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "staffId": "Cco1234",
+    "name": "David Brown",
+    "role": "cco",
+    "tabs": [
+      {
+        "name": "Pipeline",
+        "charts": [
+          {
+            "type": "donutChart",
+            "title": "ARR Achievement % ",
+            "data": {
+              "minY": 50,
+              "maxY": 100,
+              "benchmarkY": 80,
+              "dataPoints": [
+                [0, 80],
+                [1, 78],
+                [2, 76],
+                [3, 74],
+                [4, 72],
+                [5, 70],
+                [6, 68]
+              ]
+            }
+          },
+          {
+            "type": "radialProgress",
+            "title": "Lead\u2192Win Conversion %",
+            "data": {
+              "minY": 0,
+              "maxY": 100,
+              "benchmarkY": 65,
+              "values": [90, 70, 60, 85]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Revenue",
+        "charts": [
+          {
+            "type": "donutChart",
+            "title": "Churn %",
+            "data": {
+              "sections": [
+                {
+                  "value": 30,
+                  "title": "A",
+                  "color": "primary"
+                },
+                {
+                  "value": 25,
+                  "title": "B",
+                  "color": "royalBlue"
+                },
+                {
+                  "value": 45,
+                  "title": "C",
+                  "color": "limeGreen"
+                }
+              ]
+            }
+          },
+          {
+            "type": "radialProgress",
+            "title": "Average Deal Size ($k)",
+            "data": {
+              "progress": 71.0
+            }
+          }
+        ]
+      },
+      {
+        "name": "Retention",
+        "charts": [
+          {
+            "type": "lineChart",
+            "title": "CLV/CAC Ratio",
+            "data": {
+              "minY": 50,
+              "maxY": 100,
+              "benchmarkY": 80,
+              "dataPoints": [
+                [0, 80],
+                [1, 78],
+                [2, 76],
+                [3, 74],
+                [4, 72],
+                [5, 70],
+                [6, 68]
+              ]
+            }
+          },
+          {
+            "type": "barChart",
+            "title": "New Logos %",
+            "data": {
+              "minY": 0,
+              "maxY": 100,
+              "benchmarkY": 65,
+              "values": [90, 70, 60, 85]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Pricing",
+        "charts": [
+          {
+            "type": "donutChart",
+            "title": "Segment Performance Index",
+            "data": {
+              "sections": [
+                {
+                  "value": 30,
+                  "title": "A",
+                  "color": "primary"
+                },
+                {
+                  "value": 25,
+                  "title": "B",
+                  "color": "royalBlue"
+                },
+                {
+                  "value": 45,
+                  "title": "C",
+                  "color": "limeGreen"
+                }
+              ]
+            }
+          },
+          {
+            "type": "radialProgress",
+            "title": "Marketing ROI %",
+            "data": {
+              "progress": 35
+            }
+          }
+        ]
+      },
+      {
+        "name": "CX & ROI",
+        "charts": [
+          {
+            "type": "lineChart",
+            "title": "Average Discount %",
+            "data": {
+              "minY": 50,
+              "maxY": 100,
+              "benchmarkY": 80,
+              "dataPoints": [
+                [0, 80],
+                [1, 78],
+                [2, 76],
+                [3, 74],
+                [4, 72],
+                [5, 70],
+                [6, 68]
+              ]
+            }
+          },
+          {
+            "type": "barChart",
+            "title": "Customer Satisfaction Score",
+            "data": {
+              "minY": 0,
+              "maxY": 100,
+              "benchmarkY": 71.0,
+              "values": [90, 70, 60, 85]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "staffId": "Cfo5678",
+    "name": "Eve Black",
+    "role": "cfo",
+    "tabs": [
+      {
+        "name": "P&L",
+        "charts": [
+          {
+            "type": "lineChart",
+            "title": "Revenue Growth %",
+            "data": {
+              "minY": 50,
+              "maxY": 100,
+              "benchmarkY": 2.2,
+              "dataPoints": [
+                [0, 80],
+                [1, 78],
+                [2, 76],
+                [3, 74],
+                [4, 72],
+                [5, 70],
+                [6, 68]
+              ]
+            }
+          },
+          {
+            "type": "barChart",
+            "title": "Gross Margin %",
+            "data": {
+              "minY": 0,
+              "maxY": 100,
+              "benchmarkY": 79.74,
+              "values": [90, 70, 60, 85]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Cash & WC",
+        "charts": [
+          {
+            "type": "donutChart",
+            "title": "Free Cash Flow ($M) ",
+            "data": {
+              "sections": [
+                {
+                  "value": 30,
+                  "title": "A",
+                  "color": "primary"
+                },
+                {
+                  "value": 25,
+                  "title": "B",
+                  "color": "royalBlue"
+                },
+                {
+                  "value": 45,
+                  "title": "C",
+                  "color": "limeGreen"
+                }
+              ]
+            }
+          },
+          {
+            "type": "radialProgress",
+            "title": "Cash Conversion Cycle (days)",
+            "data": {
+              "progress": -85.0
+            }
+          }
+        ]
+      },
+      {
+        "name": "CapEx & Debt",
+        "charts": [
+          {
+            "type": "lineChart",
+            "title": "CapEx vs Budget % ",
+            "data": {
+              "minY": 50,
+              "maxY": 100,
+              "benchmarkY": 16.0,
+              "dataPoints": [
+                [0, 80],
+                [1, 78],
+                [2, 76],
+                [3, 74],
+                [4, 72],
+                [5, 70],
+                [6, 68]
+              ]
+            }
+          },
+          {
+            "type": "barChart",
+            "title": "Debt to Equity Ratio",
+            "data": {
+              "minY": 0,
+              "maxY": 100,
+              "benchmarkY": 1.05,
+              "values": [30, 55, 40, 55]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Forecast",
+        "charts": [
+          {
+            "type": "donutChart",
+            "title": "Forecast Variance % ",
+            "data": {
+              "sections": [
+                {
+                  "value": 30,
+                  "title": "A",
+                  "color": "primary"
+                },
+                {
+                  "value": 25,
+                  "title": "B",
+                  "color": "royalBlue"
+                },
+                {
+                  "value": 45,
+                  "title": "C",
+                  "color": "limeGreen"
+                }
+              ]
+            }
+          },
+          {
+            "type": "radialProgress",
+            "title": "Vendor Savings ($k)",
+            "data": {
+              "progress": 35
+            }
+          }
+        ]
+      },
+      {
+        "name": "Risk & Audit",
+        "charts": [
+          {
+            "type": "lineChart",
+            "title": "Audit Exceptions (#) ",
+            "data": {
+              "minY": 50,
+              "maxY": 100,
+              "benchmarkY": 80,
+              "dataPoints": [
+                [0, 80],
+                [1, 78],
+                [2, 76],
+                [3, 74],
+                [4, 72],
+                [5, 70],
+                [6, 68]
+              ]
+            }
+          },
+          {
+            "type": "barChart",
+            "title": "Financial Risk Index",
+            "data": {
+              "minY": 0,
+              "maxY": 100,
+              "benchmarkY": 65,
+              "values": [90, 70, 60, 85]
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

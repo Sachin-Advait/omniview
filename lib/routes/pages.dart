@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:omniview/common/utils/global_keys.dart';
 import 'package:omniview/modules/chat_bot/page/chat_bot.dart';
+import 'package:omniview/modules/login/bloc/login_bloc.dart';
 import 'package:omniview/modules/login/page/login.dart';
 import 'package:omniview/modules/nav_bar/cubit/nav_bar_cubit.dart';
 import 'package:omniview/modules/nav_bar/page/nav_bar.dart';
@@ -39,7 +40,10 @@ class Pages {
       GoRoute(
         path: Routes.login,
         name: Routes.login,
-        builder: (context, state) => const Login(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => LoginBloc(),
+          child: const Login(),
+        ),
       ),
       GoRoute(
         path: Routes.navBar,
