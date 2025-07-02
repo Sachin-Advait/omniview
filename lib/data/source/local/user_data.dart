@@ -7,7 +7,8 @@ class UserDataLocalSource {
   Future<List<UserModel>> loadUsers() async {
     final jsonString = await rootBundle.loadString('assets/data/users.json');
     final List<dynamic> jsonList = json.decode(jsonString);
-    return jsonList.map((e) => UserModel.fromJson(e)).toList();
+    final user = jsonList.map((e) => UserModel.fromJson(e)).toList();
+    return user;
   }
 
   Future<UserModel?> getUserByStaffId(String staffId) async {

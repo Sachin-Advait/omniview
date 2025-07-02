@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:omniview/common/widgets/chart_card.dart';
 import 'package:omniview/common/widgets/custom_bar_chart.dart';
 import 'package:omniview/common/widgets/custom_line_chart.dart';
-import 'package:omniview/data/models/chart_model.dart';
 import 'package:omniview/data/models/tab_model.dart';
 
 class LineAndBarChart extends StatelessWidget {
@@ -15,10 +14,8 @@ class LineAndBarChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final lineChart = tab.charts[0];
-    final lineData = lineChart.data as LineChartDataModel;
 
     final barChart = tab.charts[1];
-    final barData = barChart.data as BarChartDataModel;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -27,11 +24,11 @@ class LineAndBarChart extends StatelessWidget {
           ChartCard(
             child: CustomLineChart(
               title: lineChart.title,
-              minY: lineData.minY,
-              maxY: lineData.maxY,
-              benchmarkY: lineData.benchmarkY,
-              dataPoints: lineData.dataPoints
-                  .map((pair) => FlSpot(pair[0], pair[1]))
+              minY: lineChart.data.minY!.toDouble(),
+              maxY: lineChart.data.maxY!.toDouble(),
+              benchmarkY: lineChart.data.benchmarkY!.toDouble(),
+              dataPoints: lineChart.data.dataPoints!
+                  .map((pair) => FlSpot(pair[0].toDouble(), pair[1].toDouble()))
                   .toList(),
             ),
           ),
@@ -41,10 +38,10 @@ class LineAndBarChart extends StatelessWidget {
           ChartCard(
             child: CustomBarChart(
               title: barChart.title,
-              minY: barData.minY,
-              maxY: barData.maxY,
-              benchmarkY: barData.benchmarkY,
-              values: barData.values,
+              minY: barChart.data.minY!.toDouble(),
+              maxY: barChart.data.maxY!.toDouble(),
+              benchmarkY: barChart.data.benchmarkY!.toDouble(),
+              values: barChart.data.values!.map((e) => e.toDouble()).toList(),
             ),
           ),
         ],

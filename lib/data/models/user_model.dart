@@ -1,10 +1,10 @@
 import 'package:omniview/data/models/tab_model.dart';
 
 class UserModel {
-  final String staffId;
-  final String name;
-  final String role;
-  final List<TabModel> tabs;
+  String staffId;
+  String name;
+  String role;
+  List<TabModel> tabs;
 
   UserModel({
     required this.staffId,
@@ -13,14 +13,10 @@ class UserModel {
     required this.tabs,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(
-      staffId: json['staffId'],
-      name: json['name'],
-      role: json['role'],
-      tabs: (json['tabs'] as List<dynamic>)
-          .map((e) => TabModel.fromJson(e))
-          .toList(),
-    );
-  }
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+    staffId: json["staffId"],
+    name: json["name"],
+    role: json["role"],
+    tabs: List<TabModel>.from(json["tabs"].map((x) => TabModel.fromJson(x))),
+  );
 }

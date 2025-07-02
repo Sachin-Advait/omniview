@@ -18,9 +18,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Emitter<LoginState> emit,
   ) async {
     emit(LoginLoading());
-    // await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 2));
     try {
-      print(event.staffId);
       final user = await userSource.getUserByStaffId(event.staffId.trim());
       if (user != null) {
         emit(LoginSuccess(user));

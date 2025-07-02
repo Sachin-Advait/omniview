@@ -15,13 +15,10 @@ class PieAndDountChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final donutChart = tab.charts.firstWhere((c) => c.type == 'donutChart');
+    final donutChart = tab.charts.firstWhere((c) => c.type == Type.DONUT_CHART);
     final radialChart = tab.charts.firstWhere(
-      (c) => c.type == 'radialProgress',
+      (c) => c.type == Type.RADIAL_PROGRESS,
     );
-
-    final donutData = donutChart.data as DonutChartDataModel;
-    final radialData = radialChart.data as RadialProgressDataModel;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -29,10 +26,10 @@ class PieAndDountChart extends StatelessWidget {
         children: [
           LabeledDonutChart(
             title: donutChart.title,
-            sections: donutData.sections.map((section) {
+            sections: donutChart.data.sections!.map((section) {
               return PieChartSectionData(
-                value: section.value,
-                title: section.title,
+                value: section.value.toDouble(),
+                title: section.title.name,
                 titlePositionPercentageOffset: 1.6,
                 color: _mapColor(section.color),
                 radius: 20,
@@ -43,7 +40,7 @@ class PieAndDountChart extends StatelessWidget {
           20.verticalSpace,
           RadialProgressChart(
             title: radialChart.title,
-            progress: radialData.progress,
+            progress: radialChart.data.progress!.toDouble(),
           ),
         ],
       ),
@@ -51,17 +48,14 @@ class PieAndDountChart extends StatelessWidget {
   }
 
   /// Maps string color keys from JSON to actual AppColors.
-  Color _mapColor(String key) {
+  Color _mapColor(ColorType key) {
     switch (key) {
-      case 'primary':
+      case ColorType.PRIMARY:
         return AppColors.primary;
-      case 'royalBlue':
+      case ColorType.ROYAL_BLUE:
         return AppColors.royalBlue;
-      case 'limeGreen':
+      case ColorType.LIME_GREEN:
         return AppColors.limeGreen;
-      // Add more mappings as needed
-      default:
-        return Colors.grey;
     }
   }
 }

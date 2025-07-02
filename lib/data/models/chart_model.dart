@@ -1,135 +1,106 @@
+// ignore_for_file: constant_identifier_names
+
 class ChartModel {
-  final String type;
-  final String title;
-  final ChartData data;
+  Type type;
+  String title;
+  DataDetails data;
 
   ChartModel({required this.type, required this.title, required this.data});
 
-  factory ChartModel.fromJson(Map<String, dynamic> json) {
-    final String type = json['type'];
-    final dynamic dataJson = json['data'];
-
-    late final ChartData data;
-
-    switch (type) {
-      case 'lineChart':
-        data = LineChartDataModel.fromJson(dataJson);
-        break;
-      case 'barChart':
-        data = BarChartDataModel.fromJson(dataJson);
-        break;
-      case 'donutChart':
-        data = DonutChartDataModel.fromJson(dataJson);
-        break;
-      case 'radialProgress':
-        data = RadialProgressDataModel.fromJson(dataJson);
-        break;
-      default:
-        throw Exception('Unknown chart type: $type');
-    }
-
-    return ChartModel(type: type, title: json['title'], data: data);
-  }
+  factory ChartModel.fromJson(Map<String, dynamic> json) => ChartModel(
+    type: typeValues.map[json["type"]]!,
+    title: json["title"],
+    data: DataDetails.fromJson(json["data"]),
+  );
 }
 
-abstract class ChartData {}
+class DataDetails {
+  int? minY;
+  int? maxY;
+  double? benchmarkY;
+  List<List<int>>? dataPoints;
+  List<int>? values;
+  List<Section>? sections;
+  double? progress;
 
-/// Line Chart
-class LineChartDataModel extends ChartData {
-  final double minY;
-  final double maxY;
-  final double benchmarkY;
-  final List<List<double>> dataPoints;
-
-  LineChartDataModel({
-    required this.minY,
-    required this.maxY,
-    required this.benchmarkY,
-    required this.dataPoints,
+  DataDetails({
+    this.minY,
+    this.maxY,
+    this.benchmarkY,
+    this.dataPoints,
+    this.values,
+    this.sections,
+    this.progress,
   });
 
-  factory LineChartDataModel.fromJson(Map<String, dynamic> json) {
-    return LineChartDataModel(
-      minY: (json['minY'] as num).toDouble(),
-      maxY: (json['maxY'] as num).toDouble(),
-      benchmarkY: (json['benchmarkY'] as num).toDouble(),
-      dataPoints: (json['dataPoints'] as List)
-          .map(
-            (point) => (point as List)
-                .map((value) => (value as num).toDouble())
-                .toList(),
-          )
-          .toList(),
-    );
-  }
+  factory DataDetails.fromJson(Map<String, dynamic> json) => DataDetails(
+    minY: json["minY"],
+    maxY: json["maxY"],
+    benchmarkY: json["benchmarkY"]?.toDouble(),
+    dataPoints: json["dataPoints"] == null
+        ? []
+        : List<List<int>>.from(
+            json["dataPoints"]!.map((x) => List<int>.from(x.map((x) => x))),
+          ),
+    values: json["values"] == null
+        ? []
+        : List<int>.from(json["values"]!.map((x) => x)),
+    sections: json["sections"] == null
+        ? []
+        : List<Section>.from(json["sections"]!.map((x) => Section.fromJson(x))),
+    progress: double.tryParse(json["progress"].toString()) ?? 0.0,
+  );
 }
 
-/// Bar Chart
-class BarChartDataModel extends ChartData {
-  final double minY;
-  final double maxY;
-  final double benchmarkY;
-  final List<double> values;
+class Section {
+  int value;
+  Title title;
+  ColorType color;
 
-  BarChartDataModel({
-    required this.minY,
-    required this.maxY,
-    required this.benchmarkY,
-    required this.values,
-  });
+  Section({required this.value, required this.title, required this.color});
 
-  factory BarChartDataModel.fromJson(Map<String, dynamic> json) {
-    return BarChartDataModel(
-      minY: (json['minY'] as num).toDouble(),
-      maxY: (json['maxY'] as num).toDouble(),
-      benchmarkY: (json['benchmarkY'] as num).toDouble(),
-      values: (json['values'] as List)
-          .map((value) => (value as num).toDouble())
-          .toList(),
-    );
-  }
+  factory Section.fromJson(Map<String, dynamic> json) => Section(
+    value: json["value"],
+    title: titleValues.map[json["title"]]!,
+    color: colorValues.map[json["color"]]!,
+  );
+
+  Map<String, dynamic> toJson() => {
+    "value": value,
+    "title": titleValues.reverse[title],
+    "color": colorValues.reverse[color],
+  };
 }
 
-/// Donut Chart
-class DonutChartDataModel extends ChartData {
-  final List<DonutSection> sections;
+enum ColorType { LIME_GREEN, PRIMARY, ROYAL_BLUE }
 
-  DonutChartDataModel({required this.sections});
+final colorValues = EnumValues({
+  "limeGreen": ColorType.LIME_GREEN,
+  "primary": ColorType.PRIMARY,
+  "royalBlue": ColorType.ROYAL_BLUE,
+});
 
-  factory DonutChartDataModel.fromJson(Map<String, dynamic> json) {
-    return DonutChartDataModel(
-      sections: (json['sections'] as List)
-          .map((e) => DonutSection.fromJson(e))
-          .toList(),
-    );
-  }
-}
+enum Title { A, B, C }
 
-class DonutSection {
-  final double value;
-  final String title;
-  final String color; // can be mapped to AppColors
+final titleValues = EnumValues({"A": Title.A, "B": Title.B, "C": Title.C});
 
-  DonutSection({required this.value, required this.title, required this.color});
+enum Type { BAR_CHART, DONUT_CHART, LINE_CHART, RADIAL_PROGRESS }
 
-  factory DonutSection.fromJson(Map<String, dynamic> json) {
-    return DonutSection(
-      value: (json['value'] as num).toDouble(),
-      title: json['title'],
-      color: json['color'],
-    );
-  }
-}
+final typeValues = EnumValues({
+  "barChart": Type.BAR_CHART,
+  "donutChart": Type.DONUT_CHART,
+  "lineChart": Type.LINE_CHART,
+  "radialProgress": Type.RADIAL_PROGRESS,
+});
 
-/// Radial Progress
-class RadialProgressDataModel extends ChartData {
-  final double progress;
+class EnumValues<T> {
+  Map<String, T> map;
+  late Map<T, String> reverseMap;
 
-  RadialProgressDataModel({required this.progress});
+  EnumValues(this.map);
 
-  factory RadialProgressDataModel.fromJson(Map<String, dynamic> json) {
-    return RadialProgressDataModel(
-      progress: (json['progress'] as num).toDouble(),
-    );
+  Map<T, String> get reverse {
+    reverseMap = map.map((k, v) => MapEntry(v, k));
+    return reverseMap;
   }
 }

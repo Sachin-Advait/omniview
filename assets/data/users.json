@@ -9,7 +9,7 @@
         "charts": [
           {
             "type": "lineChart",
-            "title": "Market Share %",
+            "title": "Enterprise Health Score",
             "data": {
               "minY": 50,
               "maxY": 100,
@@ -27,7 +27,7 @@
           },
           {
             "type": "barChart",
-            "title": "Free Cash Flow ($M)",
+            "title": "Revenue Achievement %",
             "data": {
               "minY": 0,
               "maxY": 100,
