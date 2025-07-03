@@ -10,6 +10,7 @@ import 'package:omniview/common/widgets/purple_button.dart';
 import 'package:omniview/config/assets/app_images.dart';
 import 'package:omniview/config/theme/app_colors.dart';
 import 'package:omniview/data/source/local/bloc/user_bloc.dart';
+import 'package:omniview/data/source/local/session_manager.dart';
 import 'package:omniview/modules/login/bloc/login_bloc.dart';
 import 'package:omniview/modules/login/components/otp_verify.dart';
 
@@ -33,6 +34,7 @@ class _LoginState extends State<Login> {
           } else if (state is LoginSuccess) {
             otpVerify(context);
             context.read<UserBloc>().add(SetUserEvent(state.user));
+            SessionManager.saveUser(state.user);
           } else if (state is LoginFailure) {
             customToast(message: 'User not found');
           }

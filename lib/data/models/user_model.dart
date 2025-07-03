@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:omniview/data/models/tab_model.dart';
 
 class UserModel {
@@ -19,4 +20,13 @@ class UserModel {
     role: json["role"],
     tabs: List<TabModel>.from(json["tabs"].map((x) => TabModel.fromJson(x))),
   );
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'staffId': staffId,
+      'name': name,
+      'role': role,
+      'tabs': tabs.map((x) => x.toJson()).toList(),
+    };
+  }
 }

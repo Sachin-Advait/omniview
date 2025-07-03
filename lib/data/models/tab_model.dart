@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:omniview/data/models/chart_model.dart';
 
 class TabModel {
@@ -12,4 +13,11 @@ class TabModel {
       json["charts"].map((x) => ChartModel.fromJson(x)),
     ),
   );
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'name': name,
+      'charts': charts.map((x) => x.toJson()).toList(),
+    };
+  }
 }

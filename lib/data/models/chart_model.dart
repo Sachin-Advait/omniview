@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 // ignore_for_file: constant_identifier_names
 
 class ChartModel {
@@ -12,6 +14,14 @@ class ChartModel {
     title: json["title"],
     data: DataDetails.fromJson(json["data"]),
   );
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'type': typeValues.reverse[type],
+      'title': title,
+      'data': data.toJson(),
+    };
+  }
 }
 
 class DataDetails {
@@ -50,6 +60,18 @@ class DataDetails {
         : List<Section>.from(json["sections"]!.map((x) => Section.fromJson(x))),
     progress: double.tryParse(json["progress"].toString()) ?? 0.0,
   );
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'minY': minY,
+      'maxY': maxY,
+      'benchmarkY': benchmarkY,
+      'dataPoints': dataPoints,
+      'values': values,
+      'sections': sections!.map((x) => x.toJson()).toList(),
+      'progress': progress,
+    };
+  }
 }
 
 class Section {
@@ -72,6 +94,18 @@ class Section {
   };
 }
 
+class EnumValues<T> {
+  Map<String, T> map;
+  late Map<T, String> reverseMap;
+
+  EnumValues(this.map);
+
+  Map<T, String> get reverse {
+    reverseMap = map.map((k, v) => MapEntry(v, k));
+    return reverseMap;
+  }
+}
+
 enum ColorType { LIME_GREEN, PRIMARY, ROYAL_BLUE }
 
 final colorValues = EnumValues({
@@ -92,15 +126,3 @@ final typeValues = EnumValues({
   "lineChart": Type.LINE_CHART,
   "radialProgress": Type.RADIAL_PROGRESS,
 });
-
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
-  }
-}
