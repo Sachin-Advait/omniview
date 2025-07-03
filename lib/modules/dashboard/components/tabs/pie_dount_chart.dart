@@ -19,6 +19,8 @@ class PieAndDountChart extends StatelessWidget {
     final radialChart = tab.charts.firstWhere(
       (c) => c.type == Type.RADIAL_PROGRESS,
     );
+    final donutSections = donutChart.data.sections!;
+    final targetValues = donutSections.map((s) => s.value.toDouble()).toList();
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -26,17 +28,22 @@ class PieAndDountChart extends StatelessWidget {
         children: [
           LabeledDonutChart(
             title: donutChart.title,
-            sections: donutChart.data.sections!.map((section) {
-              return PieChartSectionData(
-                value: section.value.toDouble(),
-                title: section.title.name,
-                titlePositionPercentageOffset: 1.6,
-                color: _mapColor(section.color),
-                radius: 20,
-                titleStyle: context.medium.copyWith(fontSize: 12),
-              );
-            }).toList(),
+            targetValues: targetValues,
+            sectionBuilder: List.generate(donutSections.length, (i) {
+              final section = donutSections[i];
+              return (double animatedValue) {
+                return PieChartSectionData(
+                  value: animatedValue,
+                  title: section.title.name,
+                  titlePositionPercentageOffset: 1.6,
+                  color: _mapColor(section.color),
+                  radius: 20,
+                  titleStyle: context.medium.copyWith(fontSize: 12),
+                );
+              };
+            }),
           ),
+
           20.verticalSpace,
           RadialProgressChart(
             title: radialChart.title,
@@ -47,7 +54,6 @@ class PieAndDountChart extends StatelessWidget {
     );
   }
 
-  /// Maps string color keys from JSON to actual AppColors.
   Color _mapColor(ColorType key) {
     switch (key) {
       case ColorType.PRIMARY:

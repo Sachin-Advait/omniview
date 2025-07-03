@@ -38,81 +38,102 @@ class CustomBarChart extends StatelessWidget {
       );
     }).toList();
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(title, style: context.medium.copyWith(fontSize: 16)),
-        25.verticalSpace,
-        AspectRatio(
-          aspectRatio: 2,
-          child: BarChart(
-            BarChartData(
-              alignment: BarChartAlignment.spaceAround,
-              minY: minY,
-              maxY: maxY,
-              extraLinesData: ExtraLinesData(
-                horizontalLines: [
-                  HorizontalLine(
-                    y: benchmarkY,
-                    color: AppColors.limeGreen,
-                    strokeWidth: 2,
-                    dashArray: [8, 4],
-                    label: HorizontalLineLabel(
-                      show: true,
-                      alignment: Alignment.topRight,
-                      style: context.medium.copyWith(
+    return GestureDetector(
+      onHorizontalDragStart: (_) {},
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title, style: context.medium.copyWith(fontSize: 16)),
+          15.verticalSpace,
+          AspectRatio(
+            aspectRatio: 1.8,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: BarChart(
+                transformationConfig: FlTransformationConfig(
+                  panEnabled: true,
+                  scaleEnabled: true,
+                  scaleAxis: FlScaleAxis.free,
+                ),
+                duration: Duration(milliseconds: 800),
+                curve: Curves.easeInOut,
+                
+                BarChartData(
+                  alignment: BarChartAlignment.spaceAround,
+                  minY: minY,
+                  maxY: maxY,
+                  barTouchData: BarTouchData(
+                    enabled: true,
+                    handleBuiltInTouches: true,
+                  ),
+                  extraLinesData: ExtraLinesData(
+                    horizontalLines: [
+                      HorizontalLine(
+                        y: benchmarkY,
                         color: AppColors.limeGreen,
-                        fontSize: 13,
+                        strokeWidth: 2,
+                        dashArray: [8, 4],
+                        label: HorizontalLineLabel(
+                          show: true,
+                          alignment: Alignment.topRight,
+                          style: context.medium.copyWith(
+                            color: AppColors.limeGreen,
+                            fontSize: 13,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  barGroups: barGroups,
+                  titlesData: FlTitlesData(
+                    bottomTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        interval: 1,
+                        getTitlesWidget: (value, _) {
+                          const labels = ['Q1', 'Q2', 'Q3', 'Q4'];
+                          final index = value.toInt();
+                          if (index < 0 || index >= labels.length) {
+                            return const SizedBox.shrink();
+                          }
+                          return Text(
+                            labels[index],
+                            style: const TextStyle(fontSize: 12),
+                          );
+                        },
                       ),
                     ),
+                    leftTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        reservedSize: 30,
+                      ),
+                    ),
+                    rightTitles: AxisTitles(),
+                    topTitles: AxisTitles(),
                   ),
-                ],
-              ),
-              barGroups: barGroups,
-              titlesData: FlTitlesData(
-                bottomTitles: AxisTitles(
-                  sideTitles: SideTitles(
-                    showTitles: true,
-                    interval: 1,
-                    getTitlesWidget: (value, _) {
-                      const labels = ['Q1', 'Q2', 'Q3', 'Q4'];
-                      final index = value.toInt();
-                      if (index < 0 || index >= labels.length) {
-                        return const SizedBox.shrink();
-                      }
-                      return Text(
-                        labels[index],
-                        style: const TextStyle(fontSize: 12),
-                      );
-                    },
+                  borderData: FlBorderData(
+                    show: true,
+                    border: const Border(
+                      left: BorderSide(color: AppColors.white50, width: 0.5),
+                      bottom: BorderSide(color: AppColors.white50, width: 0.5),
+                      right: BorderSide.none,
+                      top: BorderSide.none,
+                    ),
+                  ),
+                  gridData: FlGridData(
+                    show: true,
+                    drawVerticalLine: true,
+                    drawHorizontalLine: true,
+                    horizontalInterval: 25,
+                    verticalInterval: 0.1,
                   ),
                 ),
-                leftTitles: AxisTitles(
-                  sideTitles: SideTitles(showTitles: true, reservedSize: 30),
-                ),
-                rightTitles: AxisTitles(),
-                topTitles: AxisTitles(),
-              ),
-              borderData: FlBorderData(
-                show: true,
-                border: const Border(
-                  left: BorderSide(color: AppColors.white50, width: 0.5),
-                  bottom: BorderSide(color: AppColors.white50, width: 0.5),
-                  right: BorderSide.none,
-                  top: BorderSide.none,
-                ),
-              ),
-              gridData: FlGridData(
-                show: true,
-                drawVerticalLine: true,
-                drawHorizontalLine: true,
-                horizontalInterval: 25,
-                verticalInterval: 0.1,
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

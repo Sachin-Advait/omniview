@@ -6,13 +6,15 @@ import 'package:omniview/config/theme/app_theme.dart';
 
 class LabeledDonutChart extends StatelessWidget {
   final String title;
-  final List<PieChartSectionData> sections;
+  final List<double> targetValues;
+  final List<PieChartSectionData Function(double)> sectionBuilder;
   final double aspectRatio;
 
   const LabeledDonutChart({
     super.key,
     required this.title,
-    required this.sections,
+    required this.targetValues,
+    required this.sectionBuilder,
     this.aspectRatio = 3.8,
   });
 
@@ -25,13 +27,25 @@ class LabeledDonutChart extends StatelessWidget {
           25.verticalSpace,
           AspectRatio(
             aspectRatio: aspectRatio,
-            child: PieChart(
-              PieChartData(
-                sectionsSpace: 0,
-                centerSpaceRadius: 40,
-                startDegreeOffset: -90,
-                sections: sections,
-              ),
+            child: TweenAnimationBuilder<double>(
+              tween: Tween(begin: 0, end: 1),
+              duration: const Duration(milliseconds: 800),
+              curve: Curves.easeOutCubic,
+              builder: (context, animationValue, _) {
+                final animatedSections = List.generate(
+                  targetValues.length,
+                  (i) => sectionBuilder[i](targetValues[i] * animationValue),
+                );
+
+                return PieChart(
+                  PieChartData(
+                    sectionsSpace: 0,
+                    centerSpaceRadius: 40,
+                    startDegreeOffset: -90,
+                    sections: animatedSections,
+                  ),
+                );
+              },
             ),
           ),
           20.verticalSpace,

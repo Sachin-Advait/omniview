@@ -32,48 +32,59 @@ class RadialProgressChart extends StatelessWidget {
           25.verticalSpace,
           AspectRatio(
             aspectRatio: aspectRatio,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                // Background arc
-                PieChart(
-                  PieChartData(
-                    sectionsSpace: 0,
-                    centerSpaceRadius: 40,
-                    startDegreeOffset: -90,
-                    sections: [
-                      PieChartSectionData(
-                        value: 100,
-                        color: backgroundColor,
-                        radius: radius,
-                        showTitle: false,
+            child: TweenAnimationBuilder<double>(
+              tween: Tween<double>(begin: 0, end: progress),
+              duration: const Duration(milliseconds: 800),
+              curve: Curves.easeOutCubic,
+              builder: (context, animatedProgress, _) {
+                return Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    // Background arc
+                    PieChart(
+                      PieChartData(
+                        sectionsSpace: 0,
+                        centerSpaceRadius: 40,
+                        startDegreeOffset: -90,
+                        sections: [
+                          PieChartSectionData(
+                            value: 100,
+                            color: backgroundColor,
+                            radius: radius,
+                            showTitle: false,
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-                // Foreground arc (progress)
-                PieChart(
-                  PieChartData(
-                    sectionsSpace: 0,
-                    centerSpaceRadius: 40,
-                    startDegreeOffset: -90,
-                    sections: [
-                      PieChartSectionData(
-                        value: progress,
-                        color: progressColor,
-                        radius: radius,
-                        showTitle: false,
+                    ),
+                    // Foreground arc (progress)
+                    PieChart(
+                      PieChartData(
+                        sectionsSpace: 0,
+                        centerSpaceRadius: 40,
+                        startDegreeOffset: -90,
+                        sections: [
+                          PieChartSectionData(
+                            value: animatedProgress,
+                            color: progressColor,
+                            radius: radius,
+                            showTitle: false,
+                          ),
+                          PieChartSectionData(
+                            value: 100 - animatedProgress,
+                            color: Colors.transparent,
+                            radius: radius,
+                            showTitle: false,
+                          ),
+                        ],
                       ),
-                      PieChartSectionData(
-                        value: 100 - progress,
-                        color: Colors.transparent,
-                        radius: radius,
-                        showTitle: false,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+                    ),
+                    Text(
+                      '${animatedProgress.toInt()}%',
+                      style: context.medium.copyWith(fontSize: 18),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
           20.verticalSpace,
