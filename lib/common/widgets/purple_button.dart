@@ -8,11 +8,13 @@ class PurpleButton extends StatelessWidget {
     required this.title,
     this.onPressed,
     this.isLoading = false,
+    this.width,
   });
 
   final String title;
   final void Function()? onPressed;
   final bool isLoading;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
@@ -25,22 +27,27 @@ class PurpleButton extends StatelessWidget {
         minimumSize: Size.zero, // Let parent (like SizedBox) control size
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       ),
-      child: isLoading
-          ? SizedBox(
-              width: 25,
-              height: 25,
-              child: CircularProgressIndicator(
-                color: AppColors.white,
-                strokeWidth: 2,
-              ),
-            )
-          : Text(
-              title,
-              style: context.semiBold.copyWith(
-                fontSize: 15,
-                color: Colors.white,
-              ),
-            ),
+      child: SizedBox(
+        width: width,
+        child: Center(
+          child: isLoading
+              ? SizedBox(
+                  width: 25,
+                  height: 25,
+                  child: CircularProgressIndicator(
+                    color: AppColors.white,
+                    strokeWidth: 2,
+                  ),
+                )
+              : Text(
+                  title,
+                  style: context.semiBold.copyWith(
+                    fontSize: 15,
+                    color: Colors.white,
+                  ),
+                ),
+        ),
+      ),
     );
   }
 }

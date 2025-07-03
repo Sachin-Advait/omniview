@@ -24,7 +24,10 @@ void otpVerify(BuildContext context) {
             padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 14),
             decoration: BoxDecoration(
               color: AppColors.primary,
-              borderRadius: BorderRadius.circular(32),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(32),
+                topRight: Radius.circular(32),
+              ),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -45,8 +48,8 @@ void otpVerify(BuildContext context) {
                   hintCharacter: '-',
                   hintStyle: TextStyle(color: AppColors.black),
                   pinTheme: PinTheme(
-                    fieldWidth: 50,
-                    fieldHeight: 50,
+                    fieldWidth: 45,
+                    fieldHeight: 45,
                     inactiveBorderWidth: 0,
                     fieldOuterPadding: EdgeInsets.symmetric(horizontal: 3),
                     borderRadius: BorderRadius.circular(15),

@@ -67,6 +67,10 @@ class RippleNavbarItemState extends State<RippleNavbarItem>
       ),
     );
 
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _controller.forward(from: 0.0); // Trigger the animation automatically
+    });
+
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         setState(() {
@@ -97,7 +101,7 @@ class RippleNavbarItemState extends State<RippleNavbarItem>
       behavior: HitTestBehavior.opaque,
       child: Center(
         child: SizedBox(
-          width: 70,
+          width: 65,
           height: double.infinity,
           child: Stack(
             alignment: widget.isSelected && widget.showDot
