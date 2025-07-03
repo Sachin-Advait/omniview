@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:omniview/common/utils/size_config.dart';
+import 'package:omniview/common/widgets/purple_button.dart';
 import 'package:omniview/config/theme/app_colors.dart';
+import 'package:omniview/config/theme/app_theme.dart';
 import 'package:omniview/data/source/local/session_manager.dart';
 import 'package:omniview/modules/onboarding/components/onboarding_data.dart';
 import 'package:omniview/modules/onboarding/cubit/onboarding_cubit.dart';
@@ -16,7 +19,30 @@ class Onboarding extends StatefulWidget {
 }
 
 class _OnboardingState extends State<Onboarding> {
-  PageController pageController = PageController();
+  late PageController pageController;
+  final Map<String, Widget> _svgCache = {};
+
+  @override
+  void initState() {
+    super.initState();
+    pageController = PageController();
+    _buildSvgCache();
+  }
+
+  void _buildSvgCache() {
+    // Cache SVG widgets to avoid rebuilding them
+    for (final page in onboardingPages) {
+      _svgCache[page.icon] = RepaintBoundary(
+        child: SvgPicture.asset(page.icon, height: 400, fit: BoxFit.contain),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,89 +50,120 @@ class _OnboardingState extends State<Onboarding> {
       body: Column(
         children: [
           Expanded(
-            child: BlocBuilder<OnboardingCubit, int>(
-              builder: (context, index) {
-                return PageView.builder(
-                  controller: pageController,
-                  itemCount: onboardingPages.length,
-                  onPageChanged: (index) {
-                    context.read<OnboardingCubit>().setPage(index);
-                  },
-                  itemBuilder: (context, index) {
-                    final page = onboardingPages[index];
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 14.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(page.icon, height: 400),
-                          const SizedBox(height: 20),
-                          Text(
-                            page.title,
-                            style: const TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.white,
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          Text(
-                            page.description,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(fontSize: 16),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+            child: PageView.builder(
+              controller: pageController,
+              itemCount: onboardingPages.length,
+              physics: const BouncingScrollPhysics(),
+              onPageChanged: (index) {
+                context.read<OnboardingCubit>().setPage(index);
+              },
+              itemBuilder: (context, index) {
+                return _OnboardingPage(
+                  page: onboardingPages[index],
+                  index: index,
                 );
               },
             ),
           ),
-          BlocBuilder<OnboardingCubit, int>(
-            builder: (context, _) {
-              final cubit = context.read<OnboardingCubit>();
-              final isLast = cubit.isLastPage(onboardingPages.length);
-
-              return TextButton(
-                onPressed: () {
-                  if (isLast) {
-                    context.goNamed(Routes.login);
-                    SessionManager.saveIsFirstTime(true);
-                  } else {
-                    cubit.nextPage(onboardingPages.length);
-                    pageController.animateToPage(
-                      cubit.state,
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
-                    );
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  fixedSize: Size.fromWidth(240),
-                  backgroundColor: AppColors.primary,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Text(
-                    isLast ? "Get Started" : "Skip",
-                    style: const TextStyle(
-                      fontSize: 17,
-                      color: AppColors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              );
-            },
+          _NavigationButton(
+            pageController: pageController,
+            totalPages: onboardingPages.length,
           ),
-          SizedBox(height: 60),
+          const SizedBox(height: 60),
         ],
       ),
     );
+  }
+}
+
+// Separate widget to prevent unnecessary rebuilds
+class _OnboardingPage extends StatelessWidget {
+  final OnboardingData page;
+  final int index;
+
+  const _OnboardingPage({required this.page, required this.index});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 14.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // Use RepaintBoundary to optimize SVG rendering
+          RepaintBoundary(
+            child: SvgPicture.asset(
+              page.icon,
+              height: 400,
+              placeholderBuilder: (context) => SizedBox(
+                height: 400,
+                child: Center(
+                  child: CircularProgressIndicator(color: AppColors.white),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          Text(
+            page.title,
+            style: context.semiBold.copyWith(
+              fontSize: 20,
+              color: AppColors.white,
+            ),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            page.description,
+            textAlign: TextAlign.center,
+            style: context.regular.copyWith(fontSize: 14),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _NavigationButton extends StatelessWidget {
+  final PageController pageController;
+  final int totalPages;
+
+  const _NavigationButton({
+    required this.pageController,
+    required this.totalPages,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<OnboardingCubit, int>(
+      buildWhen: (previous, current) => previous != current,
+      builder: (context, currentPage) {
+        final cubit = context.read<OnboardingCubit>();
+        final isLast = cubit.isLastPage(totalPages);
+
+        return PurpleButton(
+          width: 150.widthMultiplier,
+          onPressed: () => _handleButtonPress(context, cubit, isLast),
+          title: currentPage == 0 ? "Get Started" : "Skip",
+        );
+      },
+    );
+  }
+
+  void _handleButtonPress(
+    BuildContext context,
+    OnboardingCubit cubit,
+    bool isLast,
+  ) {
+    if (isLast) {
+      context.goNamed(Routes.login);
+      SessionManager.saveIsFirstTime(true);
+    } else {
+      final nextPage = cubit.state + 1;
+      pageController.animateToPage(
+        nextPage,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOutCubic,
+      );
+    }
   }
 }

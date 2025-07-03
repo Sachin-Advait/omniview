@@ -14,21 +14,21 @@ class OnboardingData {
 
 final onboardingPages = [
   OnboardingData(
-    title: 'Strategy',
+    title: 'Network Pulse',
     description:
-        'Focused your plan designed to achieve specific goals. It includes defining objectives, market research, and aligning a roadmap to reach desired outcomes.',
+        'See dropped-call ratio, data throughput, latency and 7 other critical KPIs in real time. OmniView turns raw network telemetry into clear, actionable insights—so you can fix issues before customers even notice.',
     icon: AppSvg.onboarding01,
   ),
   OnboardingData(
-    title: 'Finance',
+    title: 'Revenue Intelligence',
     description:
-        'Manage your money and assets, including budgeting, saving, investing, and retirement planning to achieve financial goals.',
+        'Unify billing, usage and subscriber data to track ARPU, roaming yield and revenue-leakage instantly. Every chart links finance back to network events, letting CXOs weigh profit impact at a glance.',
     icon: AppSvg.onboarding02,
   ),
   OnboardingData(
-    title: 'Analytics',
+    title: 'Strategic Insights',
     description:
-        'Analyzing data to uncover patterns, insights, and trends to support informed decision-making, improve performance, predict outcomes, and improve efficiency.',
+        'AI-powered forecasts simulate 5 G rollout, tariff tweaks and CAPEX plans. Align the entire leadership team around a data-backed roadmap that boosts market share and customer loyalty.',
     icon: AppSvg.onboarding03,
   ),
 ];
