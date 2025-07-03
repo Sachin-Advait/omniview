@@ -42,6 +42,7 @@ class _DashboardState extends State<Dashboard> {
                 color: AppColors.primary.withValues(alpha: .2),
               ),
               child: TabBar(
+                physics: NeverScrollableScrollPhysics(),
                 dividerHeight: 0,
                 indicatorWeight: 0,
                 indicatorPadding: EdgeInsetsGeometry.zero,

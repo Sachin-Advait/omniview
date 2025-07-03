@@ -1,8 +1,9 @@
 [
   {
-    "staffId": "Ceo2342",
+    "staffId": "ceo",
     "name": "Alice Johnson",
     "role": "ceo",
+    "image": "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW58ZW58MHx8MHx8fDA%3D",
     "tabs": [
       {
         "name": "Growth",
@@ -176,9 +177,10 @@
     ]
   },
   {
-    "staffId": "Ctdo2422",
+    "staffId": "ctdo",
     "name": "Bob Smith",
     "role": "ctdo",
+    "image": "https://images.unsplash.com/photo-1545987796-200677ee1011?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "tabs": [
       {
         "name": "Reliability",
@@ -352,9 +354,10 @@
     ]
   },
   {
-    "staffId": "Cpo232",
+    "staffId": "cpo",
     "name": "Carol White",
     "role": "cpo",
+    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "tabs": [
       {
         "name": "Workforce",
@@ -528,9 +531,10 @@
     ]
   },
   {
-    "staffId": "Cco1234",
+    "staffId": "cco",
     "name": "David Brown",
     "role": "cco",
+    "image": "https://plus.unsplash.com/premium_photo-1671656349218-5218444643d8?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8aHVtYW58ZW58MHx8MHx8fDA%3D",
     "tabs": [
       {
         "name": "Pipeline",
@@ -704,9 +708,10 @@
     ]
   },
   {
-    "staffId": "Cfo5678",
+    "staffId": "cfo",
     "name": "Eve Black",
     "role": "cfo",
+    "image": "https://images.unsplash.com/photo-1589571894960-20bbe2828d0a?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGh1bWFufGVufDB8fDB8fHww",
     "tabs": [
       {
         "name": "P&L",

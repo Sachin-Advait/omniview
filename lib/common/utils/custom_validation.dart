@@ -18,7 +18,7 @@ class CustomValidtion {
   static String? isStaffId(String? phone) {
     if (phone == null || phone.isEmpty) {
       return AppErrors.fieldIsRequired;
-    } else if (phone.length < 4) {
+    } else if (phone.length < 3) {
       return AppErrors.staffIdErrorText;
     } else {
       return null;

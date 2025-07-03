@@ -7,6 +7,7 @@ import 'package:omniview/common/widgets/custom_appbar.dart';
 import 'package:omniview/config/assets/app_svg.dart';
 import 'package:omniview/config/theme/app_colors.dart';
 import 'package:omniview/config/theme/app_theme.dart';
+import 'package:omniview/data/models/user_model.dart';
 import 'package:omniview/data/source/local/session_manager.dart';
 import 'package:omniview/modules/setting/components/setting_tile.dart';
 import 'package:omniview/routes/Routes.dart';
@@ -21,6 +22,14 @@ class Setting extends StatefulWidget {
 class _SettingState extends State<Setting> {
   bool _switchValue = false;
 
+  late UserModel user;
+
+  @override
+  void initState() {
+    user = SessionManager.getUser();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,18 +43,18 @@ class _SettingState extends State<Setting> {
             leading: Container(
               width: 60,
               height: 60,
-              decoration: BoxDecoration(
-                color: AppColors.primary,
-                borderRadius: BorderRadius.circular(8),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
+              child: ClipRRect(
+                borderRadius: BorderRadiusGeometry.circular(12),
+                child: Image.network(user.image, fit: BoxFit.cover),
               ),
             ),
             minLeadingWidth: 0,
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('John', style: context.medium.copyWith(fontSize: 18)),
-                Text('12324532', style: context.regular),
-                Text('eamil@gail.com', style: context.regular),
+                Text(user.name, style: context.medium.copyWith(fontSize: 18)),
+                Text(user.role, style: context.regular.copyWith(fontSize: 18)),
               ],
             ),
             trailing: SvgPicture.asset(
@@ -81,13 +90,13 @@ class _SettingState extends State<Setting> {
           ),
           15.verticalSpace,
           SettingTile(
-            icon: AppSvg.notification,
+            icon: AppSvg.help,
             tileColor: AppColors.rosePink,
             title: 'Help and Support',
           ),
           15.verticalSpace,
           SettingTile(
-            icon: AppSvg.filter,
+            icon: AppSvg.logout,
             tileColor: AppColors.softOrange,
             title: 'Logout',
             onTap: () {
