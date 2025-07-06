@@ -6,6 +6,7 @@ import 'package:omniview/common/utils/size_config.dart';
 import 'package:omniview/config/assets/app_svg.dart';
 import 'package:omniview/config/theme/app_colors.dart';
 import 'package:omniview/config/theme/app_theme.dart';
+import 'package:omniview/routes/app_routes.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -50,17 +51,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       actions: [
-        Container(
-          padding: EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: AppColors.darkSlate,
-            border: Border.all(color: AppColors.primary),
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: SvgPicture.asset(
-            AppSvg.notification,
-            height: 13,
-            colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+        GestureDetector(
+          onTap: () => context.pushNamed(Routes.notification),
+          child: Container(
+            padding: EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: AppColors.darkSlate,
+              border: Border.all(color: AppColors.primary),
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: SvgPicture.asset(
+              AppSvg.notification,
+              height: 13,
+              colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+            ),
           ),
         ),
         15.horizontalSpace,

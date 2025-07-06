@@ -8,6 +8,7 @@ import 'package:omniview/modules/login/bloc/login_bloc.dart';
 import 'package:omniview/modules/login/page/login.dart';
 import 'package:omniview/modules/nav_bar/cubit/nav_bar_cubit.dart';
 import 'package:omniview/modules/nav_bar/page/nav_bar.dart';
+import 'package:omniview/modules/notifications/pages/notification.dart';
 import 'package:omniview/modules/onboarding/cubit/onboarding_cubit.dart';
 import 'package:omniview/modules/onboarding/page/onboarding.dart';
 import 'package:omniview/modules/profile/view/profile.dart';
@@ -73,6 +74,11 @@ class Pages {
         path: Routes.help,
         name: Routes.help,
         builder: (context, state) => const HelpAndSupport(),
+      ),
+      GoRoute(
+        path: Routes.notification,
+        name: Routes.notification,
+        builder: (context, state) => const Notification(),
       ),
     ],
   );

@@ -6,4 +6,5 @@ class Routes {
   static const chatBot = '/chatbot';
   static const profile = '/profile';
   static const help = '/help';
+  static const notification = '/notification';
 }
