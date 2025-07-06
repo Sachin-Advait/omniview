@@ -7,7 +7,7 @@ import 'package:omniview/config/assets/app_svg.dart';
 import 'package:omniview/config/theme/app_colors.dart';
 import 'package:omniview/modules/nav_bar/cubit/nav_bar_cubit.dart';
 import 'package:omniview/modules/nav_bar/page/components/animated_navbar_widget.dart';
-import 'package:omniview/routes/routes.dart';
+import 'package:omniview/routes/app_routes.dart';
 
 class NavBarContent extends StatelessWidget {
   const NavBarContent({super.key});

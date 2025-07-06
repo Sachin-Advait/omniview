@@ -10,7 +10,7 @@ import 'package:omniview/config/theme/app_theme.dart';
 import 'package:omniview/data/models/user_model.dart';
 import 'package:omniview/data/source/local/session_manager.dart';
 import 'package:omniview/modules/setting/components/setting_tile.dart';
-import 'package:omniview/routes/Routes.dart';
+import 'package:omniview/routes/app_routes.dart';
 
 class Setting extends StatefulWidget {
   const Setting({super.key});
@@ -57,12 +57,15 @@ class _SettingState extends State<Setting> {
                 Text(user.role, style: context.regular.copyWith(fontSize: 18)),
               ],
             ),
-            trailing: SvgPicture.asset(
-              AppSvg.edit,
-              height: 20,
-              colorFilter: const ColorFilter.mode(
-                AppColors.primary,
-                BlendMode.srcIn,
+            trailing: InkWell(
+              onTap: () => context.pushNamed(Routes.profile, extra: user),
+              child: SvgPicture.asset(
+                AppSvg.edit,
+                height: 20,
+                colorFilter: const ColorFilter.mode(
+                  AppColors.primary,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
           ),

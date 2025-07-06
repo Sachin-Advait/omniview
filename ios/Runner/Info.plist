@@ -28,6 +28,11 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>This app uses the camera to scan card details, QR codes for payments, and other visual inputs.</string>
+	<!-- <string>To capture photo grant Capital Connect camera access.</string> -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Capital Connect need access to photo library for Images.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

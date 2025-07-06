@@ -9,7 +9,7 @@ import 'package:omniview/common/constants/app_strings.dart';
 import 'package:omniview/common/utils/size_config.dart';
 import 'package:omniview/config/theme/app_theme.dart';
 import 'package:omniview/data/source/local/bloc/user_bloc.dart';
-import 'package:omniview/routes/pages.dart';
+import 'package:omniview/routes/app_pages.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

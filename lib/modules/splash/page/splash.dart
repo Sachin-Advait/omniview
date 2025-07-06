@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:omniview/common/utils/size_config.dart';
 import 'package:omniview/config/assets/app_images.dart';
-import 'package:omniview/routes/Routes.dart';
-import 'package:omniview/routes/pages.dart';
+import 'package:omniview/routes/app_pages.dart';
+import 'package:omniview/routes/app_routes.dart';
 
 import '../bloc/splash_bloc.dart';
 

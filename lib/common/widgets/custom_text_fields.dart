@@ -57,7 +57,7 @@ mixin CustomDecorationMixin {
         borderRadius: BorderRadius.circular(radius ?? 30),
         borderSide: BorderSide(
           width: 1,
-          color: borderColor ?? AppColors.white50,
+          color: borderColor ?? AppColors.white75.withValues(alpha: .5),
         ),
       ),
       filled: true,

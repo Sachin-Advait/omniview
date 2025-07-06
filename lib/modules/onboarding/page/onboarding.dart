@@ -9,7 +9,7 @@ import 'package:omniview/config/theme/app_theme.dart';
 import 'package:omniview/data/source/local/session_manager.dart';
 import 'package:omniview/modules/onboarding/components/onboarding_data.dart';
 import 'package:omniview/modules/onboarding/cubit/onboarding_cubit.dart';
-import 'package:omniview/routes/routes.dart';
+import 'package:omniview/routes/app_routes.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
