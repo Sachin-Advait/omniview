@@ -5,4 +5,5 @@ class Routes {
   static const navBar = '/nav-bar';
   static const chatBot = '/chatbot';
   static const profile = '/profile';
+  static const help = '/help';
 }

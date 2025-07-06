@@ -103,6 +103,7 @@ class UniversalTextField extends StatelessWidget with CustomDecorationMixin {
   final Function(String)? onChanged;
   final AutovalidateMode? autovalidateMode;
   final FocusNode? focusNode;
+  final TextCapitalization textCapitalization;
 
   const UniversalTextField({
     super.key,
@@ -128,11 +129,13 @@ class UniversalTextField extends StatelessWidget with CustomDecorationMixin {
     this.autovalidateMode,
     this.focusNode,
     this.onChanged,
+    this.textCapitalization = TextCapitalization.none,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textCapitalization: textCapitalization,
       enabled: enabled,
       readOnly: readOnly ?? false,
       obscureText: false,

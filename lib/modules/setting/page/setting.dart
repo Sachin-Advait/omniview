@@ -96,6 +96,7 @@ class _SettingState extends State<Setting> {
             icon: AppSvg.help,
             tileColor: AppColors.rosePink,
             title: 'Help and Support',
+            onTap: () => context.pushNamed(Routes.help, extra: user),
           ),
           15.verticalSpace,
           SettingTile(

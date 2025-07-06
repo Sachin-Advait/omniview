@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:omniview/common/utils/global_keys.dart';
 import 'package:omniview/data/models/user_model.dart';
 import 'package:omniview/modules/chat_bot/page/chat_bot.dart';
+import 'package:omniview/modules/help/page/help.dart';
 import 'package:omniview/modules/login/bloc/login_bloc.dart';
 import 'package:omniview/modules/login/page/login.dart';
 import 'package:omniview/modules/nav_bar/cubit/nav_bar_cubit.dart';
@@ -67,6 +68,11 @@ class Pages {
           final user = state.extra! as UserModel;
           return Profile(user: user);
         },
+      ),
+      GoRoute(
+        path: Routes.help,
+        name: Routes.help,
+        builder: (context, state) => const HelpAndSupport(),
       ),
     ],
   );

@@ -6,4 +6,5 @@ class AppImages {
   static const String logout = 'assets/images/power-off.png';
   static const String profilePlaceHolder =
       'assets/images/profile_placeholder.png';
+  static const String helpCenterImage = 'assets/images/help_center_image.png';
 }
