@@ -33,7 +33,7 @@ class _DashboardState extends State<Dashboard> {
         appBar: CustomAppBar(title: 'Dashboard'),
         body: Column(
           children: [
-            StatBuilder(),
+            StatBuilder(summary: user.summary),
             20.verticalSpace,
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 12),

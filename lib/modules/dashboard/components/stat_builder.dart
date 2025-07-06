@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:omniview/config/theme/app_colors.dart';
+import 'package:omniview/data/models/user_model.dart';
 import 'package:omniview/modules/dashboard/components/stat_card.dart';
 
 class StatBuilder extends StatelessWidget {
-  const StatBuilder({super.key});
+  const StatBuilder({super.key, required this.summary});
+
+  final List<Summary> summary;
 
   @override
   Widget build(BuildContext context) {
@@ -15,37 +18,33 @@ class StatBuilder extends StatelessWidget {
         child: Row(
           children: [
             StatCard(
-              icon: Icons.attach_money,
-              title: 'Revenue YTD',
-              subtitle: '+4.83%',
-              value: '\$1.322B',
+              title: summary[0].label,
+              subtitle: summary[0].change,
+              value: summary[0].value,
               color: AppColors.violet.withValues(alpha: .5),
               trailing: Icon(Icons.show_chart, color: AppColors.primary),
             ),
             10.horizontalSpace,
             StatCard(
-              icon: Icons.groups,
-              title: 'EBITDA %',
-              subtitle: '+0.6pp',
-              value: '28.43%',
+              title: summary[1].label,
+              subtitle: summary[1].change,
+              value: summary[1].value,
               color: AppColors.royalBlue.withValues(alpha: .5),
               trailing: Icon(Icons.show_chart, color: AppColors.royalBlue),
             ),
             10.horizontalSpace,
             StatCard(
-              icon: Icons.groups,
-              title: 'NPS',
-              subtitle: '▲2',
-              value: '62',
+              title: summary[2].label,
+              subtitle: summary[2].change,
+              value: summary[2].value,
               color: AppColors.limeGreen.withValues(alpha: .5),
               trailing: Icon(Icons.show_chart, color: AppColors.cyan),
             ),
             10.horizontalSpace,
             StatCard(
-              icon: Icons.attach_money,
-              title: 'Health Idx',
-              subtitle: '▲1',
-              value: '81',
+              title: summary[3].label,
+              subtitle: summary[3].change,
+              value: summary[3].value,
               color: AppColors.softOrange.withValues(alpha: .5),
               trailing: Icon(Icons.show_chart, color: AppColors.softOrange),
             ),

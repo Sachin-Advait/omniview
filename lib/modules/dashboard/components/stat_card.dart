@@ -4,7 +4,6 @@ import 'package:omniview/config/theme/app_colors.dart';
 import 'package:omniview/config/theme/app_theme.dart';
 
 class StatCard extends StatelessWidget {
-  final IconData icon;
   final String title;
   final String subtitle;
   final String value;
@@ -13,7 +12,6 @@ class StatCard extends StatelessWidget {
 
   const StatCard({
     super.key,
-    required this.icon,
     required this.title,
     required this.subtitle,
     required this.value,

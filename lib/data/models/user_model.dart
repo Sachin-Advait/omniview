@@ -7,6 +7,7 @@ class UserModel {
   String role;
   String image;
   List<TabModel> tabs;
+  List<Summary> summary;
 
   UserModel({
     required this.staffId,
@@ -14,6 +15,7 @@ class UserModel {
     required this.role,
     required this.tabs,
     required this.image,
+    required this.summary,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
@@ -22,6 +24,9 @@ class UserModel {
     role: json["role"],
     image: json["image"],
     tabs: List<TabModel>.from(json["tabs"].map((x) => TabModel.fromJson(x))),
+    summary: List<Summary>.from(
+      json["summary"].map((x) => Summary.fromJson(x)),
+    ),
   );
 
   Map<String, dynamic> toJson() {
@@ -31,6 +36,27 @@ class UserModel {
       'role': role,
       'image': image,
       'tabs': tabs.map((x) => x.toJson()).toList(),
+      "summary": List<dynamic>.from(summary.map((x) => x.toJson())),
     };
   }
+}
+
+class Summary {
+  String value;
+  String change;
+  String label;
+
+  Summary({required this.value, required this.change, required this.label});
+
+  factory Summary.fromJson(Map<String, dynamic> json) => Summary(
+    value: json["value"],
+    change: json["change"],
+    label: json["label"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "value": value,
+    "change": change,
+    "label": label,
+  };
 }

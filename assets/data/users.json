@@ -4,6 +4,12 @@
     "name": "Alice Johnson",
     "role": "ceo",
     "image": "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW58ZW58MHx8MHx8fDA%3D",
+    "summary": [
+      { "value": "$1.32B", "change": "+4.8%", "label": "Revenue YTD" },
+      { "value": "28.4%", "change": "+0.6pp", "label": "EBITDA %" },
+      { "value": "62", "change": "+2", "label": "NPS" },
+      { "value": "81", "change": "+1", "label": "Health Idx" }
+    ],
     "tabs": [
       {
         "name": "Growth",
@@ -181,6 +187,12 @@
     "name": "Bob Smith",
     "role": "ctdo",
     "image": "https://images.unsplash.com/photo-1545987796-200677ee1011?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "summary": [
+      { "value": "99.93%", "change": "+0.02pp", "label": "Uptime %" },
+      { "value": "1.4h", "change": "-0.3h", "label": "MTTR hrs" },
+      { "value": "$42k", "change": "-3k", "label": "Cloud Burn" },
+      { "value": "7", "change": "+1", "label": "Critical CVEs" }
+    ],
     "tabs": [
       {
         "name": "Reliability",
@@ -358,6 +370,12 @@
     "name": "Carol White",
     "role": "cpo",
     "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "summary": [
+      { "value": "98%", "change": "-1pp", "label": "HC vs Plan" },
+      { "value": "3.1%", "change": "+0.4pp", "label": "Attrition %" },
+      { "value": "54", "change": "+3", "label": "eNPS" },
+      { "value": "72", "change": "—", "label": "Diversity Idx" }
+    ],
     "tabs": [
       {
         "name": "Workforce",
@@ -535,6 +553,12 @@
     "name": "David Brown",
     "role": "cco",
     "image": "https://plus.unsplash.com/premium_photo-1671656349218-5218444643d8?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8aHVtYW58ZW58MHx8MHx8fDA%3D",
+    "summary": [
+      { "value": "$812M", "change": "+6.2%", "label": "ARR YTD" },
+      { "value": "3.4×", "change": "+0.2", "label": "Pipeline X" },
+      { "value": "1.8%", "change": "-0.2pp", "label": "Churn %" },
+      { "value": "28%", "change": "+1pp", "label": "Conversion %" }
+    ],
     "tabs": [
       {
         "name": "Pipeline",
@@ -712,6 +736,12 @@
     "name": "Eve Black",
     "role": "cfo",
     "image": "https://images.unsplash.com/photo-1589571894960-20bbe2828d0a?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGh1bWFufGVufDB8fDB8fHww",
+    "summary": [
+      { "value": "$502M", "change": "+$12M", "label": "Cash on Hand" },
+      { "value": "$37M", "change": "-$2M", "label": "FCF MTD" },
+      { "value": "9.6%", "change": "+0.3pp", "label": "Rev Growth %" },
+      { "value": "2.1%", "change": "+0.2pp", "label": "Forecast Var %" }
+    ],
     "tabs": [
       {
         "name": "P&L",
