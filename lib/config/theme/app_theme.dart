@@ -57,7 +57,7 @@ class AppThemes {
   );
 
   static final ThemeData lightTheme = ThemeData(
-    brightness: Brightness.dark,
+    brightness: Brightness.light,
     fontFamily: 'Poppins',
     scaffoldBackgroundColor: AppColors.lightBackground,
     cardTheme: CardThemeData(color: AppColors.lightCard),
