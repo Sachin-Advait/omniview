@@ -65,6 +65,11 @@ class _PulseBarChartState extends State<PulseBarChart> {
                     showTitles: true,
                     reservedSize: 30,
                     interval: 50,
+                    getTitlesWidget: (value, meta) => Text(
+                      value.toInt().toString(),
+                      style: context.regular,
+                      textAlign: TextAlign.center,
+                    ),
                     maxIncluded: false,
                   ),
                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:omniview/config/theme/app_colors.dart';
 import 'package:omniview/config/theme/app_theme.dart';
 
 class TabItem extends StatelessWidget {
@@ -11,7 +12,7 @@ class TabItem extends StatelessWidget {
     return Tab(
       child: Text(
         title,
-        style: context.medium,
+        style: context.medium.copyWith(color: AppColors.white),
         overflow: TextOverflow.ellipsis,
       ),
     );

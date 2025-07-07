@@ -4,7 +4,7 @@ import 'package:omniview/common/widgets/custom_appbar.dart';
 import 'package:omniview/common/widgets/custom_text_fields.dart';
 import 'package:omniview/common/widgets/purple_button.dart';
 import 'package:omniview/config/assets/app_images.dart';
-import 'package:omniview/config/theme/app_colors.dart';
+import 'package:omniview/config/theme/app_theme.dart';
 import 'package:omniview/modules/help/components/help_list_tile.dart';
 
 class HelpAndSupport extends StatelessWidget {
@@ -21,7 +21,7 @@ class HelpAndSupport extends StatelessWidget {
               padding: const EdgeInsets.only(left: 14, bottom: 3),
               margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
               decoration: BoxDecoration(
-                color: AppColors.darkSlate,
+                color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Row(
@@ -33,15 +33,15 @@ class HelpAndSupport extends StatelessWidget {
                         Text(
                           'Contact Us',
                           textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
+                          style: context.bold.copyWith(fontSize: 16),
                         ),
                         const SizedBox(height: 13),
                         Text(
                           'Please get in touch and we will be happy help you',
-                          style: TextStyle(letterSpacing: .2, height: 1.4),
+                          style: context.medium.copyWith(
+                            letterSpacing: .2,
+                            height: 1.4,
+                          ),
                         ),
                       ],
                     ),
@@ -56,7 +56,7 @@ class HelpAndSupport extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 10),
               // width: Get.width,
               decoration: BoxDecoration(
-                color: AppColors.darkSlate,
+                color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Column(
@@ -86,7 +86,7 @@ class HelpAndSupport extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               margin: const EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
-                color: AppColors.darkSlate,
+                color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Column(
@@ -94,12 +94,15 @@ class HelpAndSupport extends StatelessWidget {
                 children: [
                   Text(
                     'Get in Touch',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: context.bold.copyWith(fontSize: 16),
                   ),
                   10.verticalSpace,
                   Text(
                     'Have an inquiry or some feedback for us?\nFill out the form below to contact our team',
-                    style: TextStyle(letterSpacing: .2, height: 1.4),
+                    style: context.medium.copyWith(
+                      letterSpacing: .2,
+                      height: 1.4,
+                    ),
                   ),
                 ],
               ),
@@ -108,7 +111,7 @@ class HelpAndSupport extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
               decoration: BoxDecoration(
-                color: AppColors.darkSlate,
+                color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Column(
@@ -116,7 +119,10 @@ class HelpAndSupport extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
-                    child: Text('Full Name'),
+                    child: Text(
+                      'Full Name',
+                      style: context.regular.copyWith(fontSize: 13),
+                    ),
                   ),
                   5.verticalSpace,
                   UniversalTextField(
@@ -127,13 +133,19 @@ class HelpAndSupport extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
-                    child: Text('Email Address'),
+                    child: Text(
+                      'Email Address',
+                      style: context.regular.copyWith(fontSize: 13),
+                    ),
                   ),
                   5.verticalSpace,
                   EmailTextField(controller: TextEditingController()),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
-                    child: Text('Phone Number'),
+                    child: Text(
+                      'Phone Number',
+                      style: context.regular.copyWith(fontSize: 13),
+                    ),
                   ),
                   5.verticalSpace,
                   PhoneTextField(
@@ -142,7 +154,10 @@ class HelpAndSupport extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
-                    child: Text('Message'),
+                    child: Text(
+                      'Message',
+                      style: context.regular.copyWith(fontSize: 13),
+                    ),
                   ),
                   8.verticalSpace,
                   UniversalTextField(

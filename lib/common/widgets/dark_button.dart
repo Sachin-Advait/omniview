@@ -36,7 +36,7 @@ class DarkButton extends StatelessWidget {
           horizontal: 12.widthMultiplier,
         ),
         decoration: BoxDecoration(
-          color: AppColors.darkSlate,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(30.radiusMultipier),
         ),
         child: isLoading

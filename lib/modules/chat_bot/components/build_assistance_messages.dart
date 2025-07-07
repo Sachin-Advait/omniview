@@ -34,9 +34,13 @@ class BuildAssistanceMessages extends StatelessWidget {
               ),
             ),
             Spacer(),
-            CustomGradientContainer(
-              height: 50.heightMultiplier,
-              width: 220.widthMultiplier,
+
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                color: AppColors.primary,
+                borderRadius: BorderRadius.circular(30),
+              ),
               child: Row(
                 children: [
                   ConstrainedBox(
@@ -44,7 +48,10 @@ class BuildAssistanceMessages extends StatelessWidget {
                     child: Text(
                       'Hii, how can I assist you?',
                       maxLines: 3,
-                      style: context.medium.copyWith(fontSize: 14),
+                      style: context.medium.copyWith(
+                        fontSize: 14,
+                        color: AppColors.white,
+                      ),
                     ),
                   ),
                   5.horizontalSpace,
@@ -55,88 +62,7 @@ class BuildAssistanceMessages extends StatelessWidget {
           ],
         ),
         40.verticalSpace,
-        // if (isDealSummaryChat == false) ...[
-        //   10.verticalSpace,
-
-        //   /// Button Rows
-        //   Row(
-        //     mainAxisAlignment: MainAxisAlignment.end,
-        //     children: [
-        //       buildIconTextButton(
-        //         text: 'Content For Property',
-        //         icon: Image.asset(ImageAssets.mageLocationPin, scale: 4),
-        //       ),
-        //     ],
-        //   ),
-
-        //   10.verticalSpace,
-
-        //   Row(
-        //     mainAxisAlignment: MainAxisAlignment.end,
-        //     children: [
-        //       buildIconTextButton(
-        //         text: 'Know More',
-        //         icon: SvgPicture.asset(SvgAssets.headPhone),
-        //       ),
-        //       10.horizontalSpace,
-        //       buildIconTextButton(
-        //         text: 'Get brochure',
-        //         icon: SvgPicture.asset(SvgAssets.tablerBook),
-        //       ),
-        //     ],
-        //   ),
-
-        //   10.verticalSpace,
-
-        //   Row(
-        //     mainAxisAlignment: MainAxisAlignment.end,
-        //     children: [
-        //       buildIconTextButton(
-        //         text: 'Guide',
-        //         icon: SvgPicture.asset(SvgAssets.lucidHouse),
-        //       ),
-        //       10.horizontalSpace,
-        //       buildIconTextButton(
-        //         text: 'Talk to agent',
-        //         icon: SvgPicture.asset(SvgAssets.popHeadphone),
-        //         onTap: () {},
-        //       ),
-        //     ],
-        //   ),
-        // ],
       ],
-    );
-  }
-}
-
-class CustomGradientContainer extends StatelessWidget {
-  final Widget? child;
-  final double? height;
-  final double? width;
-
-  const CustomGradientContainer({
-    super.key,
-    this.child,
-    this.height,
-    this.width,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      clipBehavior: Clip.none,
-      height: height,
-      width: width,
-      padding: EdgeInsets.symmetric(
-        horizontal: 11.08.widthMultiplier,
-        vertical: 6.5.heightMultiplier,
-      ),
-      decoration: BoxDecoration(
-        color: AppColors.violet,
-        borderRadius: BorderRadius.circular(30.radiusMultipier),
-        border: Border.all(color: AppColors.white, width: 1.widthMultiplier),
-      ),
-      child: child,
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:omniview/config/theme/app_colors.dart';
 
 class ChartCard extends StatelessWidget {
   const ChartCard({super.key, required this.child});
@@ -11,7 +10,7 @@ class ChartCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.darkSlate,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(30),
       ),
       child: child,

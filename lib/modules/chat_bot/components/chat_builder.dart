@@ -40,44 +40,7 @@ class ChatBuilder extends StatelessWidget {
                   final message =
                       dummyMessages[dummyMessages.length - 1 - index];
                   final isUser = message['isUser'] as bool;
-
-                  return Align(
-                    alignment: isUser
-                        ? Alignment.centerRight
-                        : Alignment.centerLeft,
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        maxWidth: kIsWeb
-                            ? 330.widthMultiplier
-                            : 200.widthMultiplier,
-                      ),
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 10.widthMultiplier,
-                          vertical: 10.heightMultiplier,
-                        ),
-                        decoration: BoxDecoration(
-                          color: isUser
-                              ? AppColors.violet
-                              : AppColors.darkSlate,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(12.radiusMultipier),
-                            topRight: Radius.circular(12.radiusMultipier),
-                            bottomLeft: Radius.circular(
-                              isUser ? 12.radiusMultipier : 0,
-                            ),
-                            bottomRight: Radius.circular(
-                              isUser ? 0 : 12.radiusMultipier,
-                            ),
-                          ),
-                        ),
-                        child: SelectableText(
-                          message['text'],
-                          style: context.medium,
-                        ),
-                      ),
-                    ),
-                  );
+                  return ChatBubble(text: message['text'], isUser: isUser);
                 },
               ),
             ],
@@ -88,6 +51,46 @@ class ChatBuilder extends StatelessWidget {
           child: const BuildInputField(),
         ),
       ],
+    );
+  }
+}
+
+class ChatBubble extends StatelessWidget {
+  final String text;
+  final bool isUser;
+
+  const ChatBubble({required this.text, required this.isUser, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxWidth: kIsWeb ? 330.widthMultiplier : 200.widthMultiplier,
+        ),
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: 10.widthMultiplier,
+            vertical: 10.heightMultiplier,
+          ),
+          decoration: BoxDecoration(
+            color: isUser ? AppColors.violet : Theme.of(context).cardColor,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(12.radiusMultipier),
+              topRight: Radius.circular(12.radiusMultipier),
+              bottomLeft: Radius.circular(isUser ? 12.radiusMultipier : 0),
+              bottomRight: Radius.circular(isUser ? 0 : 12.radiusMultipier),
+            ),
+          ),
+          child: SelectableText(
+            text,
+            style: context.medium.copyWith(
+              color: isUser ? AppColors.white : null,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

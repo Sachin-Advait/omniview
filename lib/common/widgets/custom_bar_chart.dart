@@ -57,7 +57,7 @@ class CustomBarChart extends StatelessWidget {
                 ),
                 duration: Duration(milliseconds: 800),
                 curve: Curves.easeInOut,
-                
+
                 BarChartData(
                   alignment: BarChartAlignment.spaceAround,
                   minY: minY,
@@ -96,10 +96,7 @@ class CustomBarChart extends StatelessWidget {
                           if (index < 0 || index >= labels.length) {
                             return const SizedBox.shrink();
                           }
-                          return Text(
-                            labels[index],
-                            style: const TextStyle(fontSize: 12),
-                          );
+                          return Text(labels[index], style: context.regular);
                         },
                       ),
                     ),
@@ -107,6 +104,11 @@ class CustomBarChart extends StatelessWidget {
                       sideTitles: SideTitles(
                         showTitles: true,
                         reservedSize: 30,
+                        getTitlesWidget: (value, meta) => Text(
+                          value.toInt().toString(),
+                          style: context.regular,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                     rightTitles: AxisTitles(),

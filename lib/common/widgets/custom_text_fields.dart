@@ -61,7 +61,7 @@ mixin CustomDecorationMixin {
         ),
       ),
       filled: true,
-      fillColor: bgColor ?? AppColors.darkSlate,
+      fillColor: bgColor ?? Theme.of(context).cardColor,
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(radius ?? 30),
         borderSide: BorderSide(width: 1, color: AppColors.primary),

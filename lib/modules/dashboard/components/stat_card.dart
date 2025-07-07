@@ -26,8 +26,8 @@ class StatCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Color.lerp(color, AppColors.darkSlate, 0.6)!,
-            AppColors.deepNavy,
+            Color.lerp(color, Theme.of(context).cardColor, 0.6)!,
+            Theme.of(context).scaffoldBackgroundColor,
           ],
           stops: [0.0, 1.0],
           begin: Alignment.topLeft,

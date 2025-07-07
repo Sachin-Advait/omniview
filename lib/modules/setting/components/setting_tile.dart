@@ -38,7 +38,10 @@ class SettingTile extends StatelessWidget {
         ),
       ),
       minLeadingWidth: 0,
-      title: Text(title, style: context.medium.copyWith(fontSize: 16)),
+      title: Text(
+        title,
+        style: context.medium.copyWith(fontSize: 16, color: AppColors.white),
+      ),
       trailing: trailing,
     );
   }

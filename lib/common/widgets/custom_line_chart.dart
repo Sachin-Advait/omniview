@@ -81,6 +81,12 @@ class CustomLineChart extends StatelessWidget {
                       sideTitles: SideTitles(
                         showTitles: true,
                         reservedSize: 30,
+                        getTitlesWidget: (value, meta) => Text(
+                          value.toInt().toString(),
+                          style: context.regular,
+                          textAlign: TextAlign.center,
+                        ),
+                        minIncluded: false,
                       ),
                     ),
                     bottomTitles: AxisTitles(

@@ -20,7 +20,7 @@ class HelpTile extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 10),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.deepNavy,
+        color: Theme.of(context).scaffoldBackgroundColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: ListTile(

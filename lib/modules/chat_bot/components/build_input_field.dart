@@ -67,10 +67,10 @@ class _BuildInputFieldState extends State<BuildInputField> {
                   width: .8,
                 ),
               ),
-              fillColor: AppColors.darkSlate,
+              fillColor: Theme.of(context).cardColor,
               filled: true,
               hintStyle: context.medium.copyWith(
-                color: AppColors.white75,
+                color: Theme.of(context).hintColor,
                 fontSize: 14,
               ),
             ),
@@ -114,12 +114,12 @@ class _BuildInputFieldState extends State<BuildInputField> {
     return Container(
       key: key,
       decoration: BoxDecoration(
-        color: AppColors.darkSlate,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(30),
         border: Border.all(color: AppColors.primary),
       ),
       child: IconButton(
-        icon: Icon(icon, color: AppColors.white),
+        icon: Icon(icon, color: Theme.of(context).canvasColor),
         onPressed: onPressed,
       ),
     );

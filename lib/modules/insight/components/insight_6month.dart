@@ -54,7 +54,15 @@ class Insight6month extends StatelessWidget {
                   ),
                 ),
                 leftTitles: AxisTitles(
-                  sideTitles: SideTitles(showTitles: true, reservedSize: 30),
+                  sideTitles: SideTitles(
+                    showTitles: true,
+                    reservedSize: 30,
+                    getTitlesWidget: (value, meta) => Text(
+                      value.toInt().toString(),
+                      style: context.regular,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 ),
               ),
               borderData: FlBorderData(

@@ -39,7 +39,7 @@ class _DashboardState extends State<Dashboard> {
               margin: const EdgeInsets.symmetric(horizontal: 12),
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(8)),
-                color: AppColors.primary.withValues(alpha: .2),
+                color: AppColors.primary.withValues(alpha: .4),
               ),
               child: TabBar(
                 physics: NeverScrollableScrollPhysics(),
@@ -54,8 +54,6 @@ class _DashboardState extends State<Dashboard> {
                   color: AppColors.primary,
                   borderRadius: BorderRadius.all(Radius.circular(8)),
                 ),
-                labelColor: Colors.white,
-                unselectedLabelColor: Colors.black54,
                 tabs: user.tabs.map((tab) => TabItem(title: tab.name)).toList(),
               ),
             ),
